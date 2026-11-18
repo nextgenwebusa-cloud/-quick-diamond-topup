@@ -12,11 +12,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
     <style>
         :root {
@@ -1414,9 +1413,10 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="login-pass" class="form-input" placeholder="Enter your password">
+            </div>
             <div style="text-align: right; margin-bottom: 12px;">
-    <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: var(--primary); text-decoration: none;">Forgot password?</a>
-</div>
+                <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: var(--primary); text-decoration: none;">Forgot password?</a>
+            </div>
 
             <button class="btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
             <div class="auth-footer">
@@ -1469,14 +1469,14 @@
     // FIREBASE CONFIG
     // ============================================================
     const firebaseConfig = {
-  apiKey: "AIzaSyA7sXxdhRR2BROMYS9PXgzm38lGURBdCGw",
-  authDomain: "quick-diamond-2af30.firebaseapp.com",
-  databaseURL: "https://quick-diamond-2af30-default-rtdb.firebaseio.com",
-  projectId: "quick-diamond-2af30",
-  storageBucket: "quick-diamond-2af30.firebasestorage.app",
-  messagingSenderId: "404863848588",
-  appId: "1:404863848588:web:fe762b292202da9aec6ba9"
-};
+      apiKey: "AIzaSyA7sXxdhRR2BROMYS9PXgzm38lGURBdCGw",
+      authDomain: "quick-diamond-2af30.firebaseapp.com",
+      databaseURL: "https://quick-diamond-2af30-default-rtdb.firebaseio.com",
+      projectId: "quick-diamond-2af30",
+      storageBucket: "quick-diamond-2af30.firebasestorage.app",
+      messagingSenderId: "404863848588",
+      appId: "1:404863848588:web:fe762b292202da9aec6ba9"
+    };
     if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     const auth = firebase.auth();
@@ -1514,10 +1514,8 @@
     // ============================================================
     function handleHeaderAvatarClick() {
         if (currentUser) {
-            // User is logged in → go to profile
             showSec('account');
         } else {
-            // Not logged in → show auth page
             showAuthPage();
         }
     }
@@ -1900,7 +1898,6 @@
                 }
             });
 
-            // Remove previously added category title elements
             document.querySelectorAll('.dynamic-cat-title').forEach(el => el.remove());
 
             let hasGames = false;
@@ -1909,13 +1906,11 @@
             categoriesMap.forEach((category) => {
                 if (category.games.length > 0) {
                     hasGames = true;
-                    // Create category title
                     const catTitle = document.createElement('h2');
                     catTitle.className = 'section-title dynamic-cat-title';
                     catTitle.textContent = category.name;
                     insertBeforeEl.parentNode.insertBefore(catTitle, insertBeforeEl);
                     
-                    // Add games under this category
                     const catGrid = document.createElement('div');
                     catGrid.className = 'game-grid';
                     category.games.forEach(item => {
@@ -1948,39 +1943,34 @@
     }
 
     function loadBanners() {
-    db.collection("banners").onSnapshot((snapshot) => {
-        const wrapper = document.getElementById('slider-wrapper');
-        const dots = document.getElementById('slider-dots');
-        
-        if (wrapper) wrapper.innerHTML = '';
-        if (dots) dots.innerHTML = '';
+        db.collection("banners").onSnapshot((snapshot) => {
+            const wrapper = document.getElementById('slider-wrapper');
+            const dots = document.getElementById('slider-dots');
+            
+            if (wrapper) wrapper.innerHTML = '';
+            if (dots) dots.innerHTML = '';
 
-        if (snapshot.empty) {
-            if (wrapper) wrapper.innerHTML = '<div class="no-banner-placeholder">No banners available</div>';
-            return;
-        }
+            if (snapshot.empty) {
+                if (wrapper) wrapper.innerHTML = '<div class="no-banner-placeholder">No banners available</div>';
+                return;
+            }
 
-        let slidesHTML = '';
-        snapshot.forEach((doc) => {
-            if (doc.data().image) {
-                slidesHTML += `<img src="${doc.data().image}" alt="Banner">`;
+            let slidesHTML = '';
+            snapshot.forEach((doc) => {
+                if (doc.data().image) {
+                    slidesHTML += `<img src="${doc.data().image}" alt="Banner">`;
+                }
+            });
+
+            if (slidesHTML && wrapper) {
+                wrapper.innerHTML = slidesHTML;
+                if (typeof initSlider === 'function') {
+                    initSlider();
+                }
             }
         });
+    }
 
-        if (slidesHTML && wrapper) {
-            wrapper.innerHTML = slidesHTML;
-            if (typeof initSlider === 'function') {
-                initSlider();
-            }
-        }
-    });
-}
-
-
-    // ============================================================
-    // TOP 3 PLAYER LEADERBOARD
-    // Ranked by total spend on successful orders.
-    // ============================================================
     function escapeLeaderboardText(value) {
         return String(value ?? '').replace(/[&<>"']/g, ch => ({
             '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -2019,7 +2009,6 @@
                     const profile = userDoc.exists ? userDoc.data() : {};
                     return { ...leader, name: profile.name || `Player #${leader.userId.slice(0, 4)}` };
                 } catch (error) {
-                    console.warn('Leaderboard profile could not be loaded:', error);
                     return { ...leader, name: `Player #${leader.userId.slice(0, 4)}` };
                 }
             }));
@@ -2045,7 +2034,6 @@
                     </div>`;
             }).join('');
         }, error => {
-            console.error('Leaderboard error:', error);
             list.innerHTML = '<div class="leaderboard-empty"><i class="fas fa-circle-exclamation" style="margin-right:5px;"></i>লিডারবোর্ড এখন লোড করা যাচ্ছে না। পরে আবার চেষ্টা করুন।</div>';
         });
     }
@@ -2099,9 +2087,6 @@
             });
     }
 
-    // ============================================================
-    // TOPUP
-    // ============================================================
     function openTopUpPage(gameId, gameName, gameImg) {
         selectedGameId = gameId;
         selectedGameName = gameName;
@@ -2414,9 +2399,6 @@
         }
     }
 
-    // ============================================================
-    // ADD MONEY
-    // ============================================================
     function goToMethodStep() {
         const inputVal = document.getElementById('new-amount-input').value;
         if (!inputVal || inputVal < 10) {
@@ -2462,9 +2444,6 @@
         document.getElementById('am-step-2').style.display = 'block';
     }
 
-    // ============================================================
-    // COPY PAYMENT NUMBER (FIXED)
-    // ============================================================
     function copyPayNumber() {
         const num = document.getElementById('pay-admin-number').innerText.trim();
         if (!num || num === 'Loading...' || num === 'Not Available' || num === 'Contact Admin') {
@@ -2616,9 +2595,6 @@
         });
     }
 
-    // ============================================================
-    // HISTORY
-    // ============================================================
     function loadHistory() {
         const list = document.getElementById('history-list');
         if (!currentUser) return;
@@ -2690,7 +2666,7 @@
     }
 
     // ============================================================
-    // INIT
+    // INIT & FORGOT PASSWORD FUNCTION
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('footer-credit').textContent =
@@ -2707,23 +2683,24 @@
         document.getElementById('home-sec').style.display = 'block';
         
         console.log('%c✅ Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ System Loaded', 'color:#6d28d9;font-weight:bold;font-size:14px;');
-   });function handleForgotPassword(e) {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    if (!email) {
-        alert("দয়া করে প্রথমে আপনার ইমেইল ঠিকানাটি লিখুন!");
-        return;
-    }
-    firebase.auth().sendPasswordResetEmail(email)
-        .then(() => {
-            alert("পাসওয়ার্ড রিসেটের লিংক আপনার ইমেইলে পাঠানো হয়েছে!");
-        })
-        .catch((error) => {
-            alert("সমস্যা হয়েছে: " + error.message);
-        });
-}
+    });
 
-</script> <!-- এখানে জাভাস্ক্রিপ্ট ট্যাগ বন্ধ করতে হবে -->
+    function handleForgotPassword(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        if (!email) {
+            alert("দয়া করে প্রথমে আপনার ইমেইল ঠিকানাটি লিখুন!");
+            return;
+        }
+        firebase.auth().sendPasswordResetEmail(email)
+            .then(() => {
+                alert("পাসওয়ার্ড রিসেটের লিংক আপনার ইমেইলে পাঠানো হয়েছে!");
+            })
+            .catch((error) => {
+                alert("সমস্যা হয়েছে: " + error.message);
+            });
+    }
+</script>
 
 <a href="https://wa.me/8801728840186?text=হ্যালো%20রিদয়%20ভাই%20আমি%20ডাইমোন্ড%20টপ%20আপ%20দিতে%20চাও" class="floating-chat-btn" target="_blank">
     💬 লাইভ চ্যাট করুন
@@ -2745,7 +2722,6 @@
     z-index: 9999;
 }
 </style>
-
 
 </body>
 </html>
