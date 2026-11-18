@@ -1197,7 +1197,7 @@
                     <button onclick="goToMethodStep()" class="btn-primary">PROCEED TO PAYMENT</button>
                 </div>
                 
-                <!-- ইউটিউব ভিডিও সেকশন (এখানে সরাসরি এমবেড কোড যুক্ত করা হয়েছে) -->
+                <!-- ইউটিউব ভিডিও সেকশন -->
                 <div class="step-card" id="tutorial-video-box">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                         <i class="fab fa-youtube" style="color:#dc2626;"></i>
@@ -1310,6 +1310,19 @@
                     <p style="font-size:11px;color:var(--text-light);font-weight:600;">Weekly Spent</p>
                 </div>
             </div>
+            
+            <!-- Referral Link Box -->
+            <div style="padding:0 16px; margin-bottom: 12px;">
+                <div style="background:white;border-radius:12px;padding:16px;border:1px solid var(--border);">
+                    <p style="font-size:12px;font-weight:700;margin-bottom:6px;"><i class="fas fa-share-alt" style="color:var(--primary);margin-right:5px;"></i> আপনার রেফারেল লিংক</p>
+                    <div style="display:flex;gap:8px;">
+                        <input type="text" id="ref-link-input" class="form-input" readonly style="font-size:11px;background:#f3f4f6;" value="লগইন করুন...">
+                        <button onclick="copyReferralLink()" class="copy-btn" style="background:var(--primary);border:none;color:white;padding:0 14px;border-radius:8px;">COPY</button>
+                    </div>
+                    <p style="font-size:10px;color:var(--text-light);margin-top:6px;">বন্ধুকে শেয়ার করুন এবং সে প্রথম অর্ডার করলে ক্যাশব্যাক বা বোনাস পান!</p>
+                </div>
+            </div>
+
             <div style="padding:0 16px;">
                 <div style="background:white;border-radius:12px;padding:16px;border:1px solid var(--border);margin-bottom:12px;">
                     <p style="font-size:12px;font-weight:700;">Email: <span id="acc-email" style="font-weight:400;color:var(--text-light);">N/A</span></p>
@@ -1458,6 +1471,11 @@
                 <label>Password</label>
                 <input type="password" id="reg-pass" class="form-input" placeholder="Create password">
             </div>
+            <!-- Optional Referral Code Input -->
+            <div class="form-group">
+                <label>Referral Code (Optional)</label>
+                <input type="text" id="reg-ref-code" class="form-input" placeholder="Enter referral code if you have">
+            </div>
             <button class="btn-primary" onclick="handleRegister()"><i class="fas fa-user-plus"></i> Create Account</button>
             <div class="auth-footer">
                 Already have an account? <a href="#" onclick="toggleAuth('login')">Sign in</a>
@@ -1510,6 +1528,7 @@
     let pendingDirectOrder = null;
     let currentDepositAmount = 0;
     let currentPaymentMethod = '';
+    let storedRefCode = '';
 
     // ============================================================
     // HEADER AVATAR CLICK HANDLER (FIXED)
@@ -1592,6 +1611,10 @@
         } else {
             document.getElementById('login-view').style.display = 'none';
             document.getElementById('register-view').style.display = 'block';
+            if (storedRefCode) {
+                const refInputEl = document.getElementById('reg-ref-code');
+                if (refInputEl) refInputEl.value = storedRefCode;
+            }
         }
     }
 
@@ -1600,6 +1623,7 @@
         const phone = document.getElementById('reg-phone').value.trim();
         const email = document.getElementById('reg-email').value.trim();
         const pass = document.getElementById('reg-pass').value;
+        const refCode = document.getElementById('reg-ref-code') ? document.getElementById('reg-ref-code').value.trim() : '';
         
         if (!name || !email || !pass) return Swal.fire('Error', 'Please fill all required fields', 'error');
         if (pass.length < 6) return Swal.fire('Error', 'Password must be at least 6 characters', 'error');
@@ -1613,6 +1637,7 @@
                     phone: phone || '',
                     email: email,
                     balance: 0,
+                    referredBy: refCode || storedRefCode || '',
                     createdAt: new Date()
                 });
             })
@@ -1672,6 +1697,7 @@
                         name: user.displayName || 'User',
                         email: user.email,
                         balance: 0,
+                        referredBy: storedRefCode || '',
                         createdAt: new Date(),
                         photoURL: user.photoURL || ''
                     });
@@ -1710,6 +1736,8 @@
             currentUser = null;
             document.getElementById('header-balance-container').style.display = 'none';
             document.getElementById('header-avatar').innerHTML = '<i class="fas fa-user"></i>';
+            const refInput = document.getElementById('ref-link-input');
+            if (refInput) refInput.value = "লগইন করুন...";
         }
     });
 
@@ -1742,8 +1770,30 @@
                 document.getElementById('acc-email').innerText = userEmail;
                 document.getElementById('acc-phone').innerText = userPhone;
                 document.getElementById('acc-profile-balance').innerText = userBalance;
-                document.getElementById('acc-support-pin').innerText = uid.substring(0, 6).toUpperCase();
+                const supportPin = uid.substring(0, 6).toUpperCase();
+                document.getElementById('acc-support-pin').innerText = supportPin;
+
+                // Update Referral Link Input
+                const refInput = document.getElementById('ref-link-input');
+                if (refInput) {
+                    refInput.value = `${window.location.origin}${window.location.pathname}?ref=${supportPin}`;
+                }
             }
+        });
+    }
+
+    function copyReferralLink() {
+        const refInput = document.getElementById('ref-link-input');
+        if (!refInput || refInput.value.includes("লগইন")) {
+            return Swal.fire('Error', 'দয়া করে আগে লগইন করুন।', 'warning');
+        }
+        refInput.select();
+        refInput.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(refInput.value).then(() => {
+            Swal.fire({ toast: true, icon: 'success', title: 'রেফারেল লিংক কপি হয়েছে!', position: 'top', showConfirmButton: false, timer: 1500 });
+        }).catch(() => {
+            document.execCommand('copy');
+            Swal.fire({ toast: true, icon: 'success', title: 'রেফারেল লিংক কপি হয়েছে!', position: 'top', showConfirmButton: false, timer: 1500 });
         });
     }
 
@@ -2297,6 +2347,9 @@
                 date: new Date()
             });
 
+            // Cashback & Referral Reward Check
+            checkAndRewardReferral(currentUser.uid, selectedProduct.price);
+
             Swal.fire('Success', 'Voucher Purchased! Check History for Code.', 'success');
             showSec('home');
         } catch (e) {
@@ -2322,6 +2375,7 @@
                 });
             })
             .then(() => {
+                checkAndRewardReferral(currentUser.uid, selectedProduct.price);
                 Swal.fire('Success', 'Order Placed Successfully!', 'success');
                 showSec('home');
             })
@@ -2387,12 +2441,53 @@
 
             setTimeout(() => {
                 orderRef.update({ status: 'success' }).then(() => {
+                    checkAndRewardReferral(currentUser.uid, selectedProduct.price);
                     Swal.fire('Success!', 'Your Top-Up has been completed successfully.', 'success');
                     showSec('home');
                 });
             }, 7000);
         } catch (e) {
             Swal.fire('Transaction Failed', e.message, 'error');
+        }
+    }
+
+    // Referral Bonus & Cashback Reward Handler
+    async function checkAndRewardReferral(uid, orderPrice) {
+        try {
+            const userDocRef = db.collection('users').doc(uid);
+            const userDoc = await userDocRef.get();
+            if (!userDoc.exists) return;
+            const userData = userDoc.data();
+
+            // Check if user has already given referral reward (Only reward on the FIRST order)
+            if (!userData.referralRewarded && userData.referredBy) {
+                const refCode = userData.referredBy.toUpperCase();
+                // Find referrer by support pin
+                const allUsersSnap = await db.collection('users').get();
+                let referrerDocRef = null;
+
+                allUsersSnap.forEach(doc => {
+                    if (doc.id.substring(0, 6).toUpperCase() === refCode) {
+                        referrerDocRef = doc.ref;
+                    }
+                });
+
+                if (referrerDocRef) {
+                    const bonusAmount = 10; // রেফার বোনাস ১০ টাকা
+                    await db.runTransaction(async (transaction) => {
+                        const refSnap = await transaction.get(referrerDocRef);
+                        if (refSnap.exists) {
+                            const currentRefBal = refSnap.data().balance || 0;
+                            transaction.update(referrerDocRef, { balance: currentRefBal + bonusAmount });
+                        }
+                    });
+                }
+
+                // Mark referral as rewarded so it won't repeat
+                await userDocRef.update({ referralRewarded: true });
+            }
+        } catch (err) {
+            console.error("Referral reward error:", err);
         }
     }
 
@@ -2663,9 +2758,19 @@
     }
 
     // ============================================================
-    // INIT & FORGOT PASSWORD FUNCTION
+    // INIT & REFERRAL URL CAPTURE
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
+        // Capture ?ref= from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const refParam = urlParams.get('ref');
+        if (refParam) {
+            storedRefCode = refParam.toUpperCase();
+            localStorage.setItem('quick_ref_code', storedRefCode);
+        } else {
+            storedRefCode = localStorage.getItem('quick_ref_code') || '';
+        }
+
         document.getElementById('footer-credit').textContent =
             `© ${new Date().getFullYear()} ${getBrandName()} | All Rights Reserved`;
         document.getElementById('developer-credit-link').href = DEVELOPER_TELEGRAM;
@@ -2678,8 +2783,6 @@
         
         document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
         document.getElementById('home-sec').style.display = 'block';
-        
-        console.log('%c✅ Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ System Loaded', 'color:#6d28d9;font-weight:bold;font-size:14px;');
     });
 
     function handleForgotPassword(e) {
