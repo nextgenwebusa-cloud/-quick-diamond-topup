@@ -1136,7 +1136,7 @@
                     <h3>Account Info</h3>
                 </div>
                 <div class="form-group">
-                    <label>Player ID</label>
+                    <label id="account-label">Player ID</label>
                     <input type="text" id="game-player-id" class="form-input" placeholder="Enter Player ID">
                 </div>
             </div>
@@ -1638,6 +1638,7 @@
                     email: email,
                     balance: 0,
                     referredBy: refCode || storedRefCode || '',
+                    referralRewarded: false,
                     createdAt: new Date()
                 });
             })
@@ -1698,6 +1699,7 @@
                         email: user.email,
                         balance: 0,
                         referredBy: storedRefCode || '',
+                        referralRewarded: false,
                         createdAt: new Date(),
                         photoURL: user.photoURL || ''
                     });
@@ -2149,14 +2151,28 @@
         document.getElementById('game-player-id').value = "";
 
         const playerSection = document.getElementById('player-id-section');
-        playerSection.style.display = (selectedGameType === 'code') ? 'none' : 'block';
+        const accountLabel = document.getElementById('account-label');
+        const playerInput = document.getElementById('game-player-id');
 
         if (selectedGameType === 'code') {
+            playerSection.style.display = 'none';
             document.getElementById('topup-sub-title').innerText = gameName + " (Instant Voucher)";
-        } else if (selectedGameType === 'auto-topup') {
-            document.getElementById('topup-sub-title').innerText = gameName + " (Auto Delivery)";
         } else {
-            document.getElementById('topup-sub-title').innerText = gameName + " (Player ID)";
+            playerSection.style.display = 'block';
+            
+            // শুধু CapCut, YouTube এবং Netflix এর জন্য জিমেইল অ্যাড্রেস চাইবে, বাকি সবগুলোর জন্য Player ID দেখাবে
+            const lowerName = gameName.toLowerCase();
+            if (lowerName.includes('capcut') || lowerName.includes('youtube') || lowerName.includes('netflix')) {
+                accountLabel.innerText = 'Account Email Address';
+                playerInput.type = 'email';
+                playerInput.placeholder = 'আপনার জিমেইল অ্যাড্রেস লিখুন (যেমন: example@gmail.com)';
+                document.getElementById('topup-sub-title').innerText = gameName + " (Account Email)";
+            } else {
+                accountLabel.innerText = 'Player ID';
+                playerInput.type = 'text';
+                playerInput.placeholder = 'Enter Player ID';
+                document.getElementById('topup-sub-title').innerText = gameName + " (Player ID)";
+            }
         }
 
         const rulesBox = document.getElementById('game-rules-box');
@@ -2266,7 +2282,7 @@
         let playerId = "N/A";
         if (selectedGameType === 'uid' || selectedGameType === 'auto-topup') {
             playerId = document.getElementById('game-player-id').value.trim();
-            if (!playerId) return Swal.fire({ icon: 'warning', title: 'Missing ID', text: 'Please enter Player ID!' });
+            if (!playerId) return Swal.fire({ icon: 'warning', title: 'Missing Info', text: 'Please enter required information!' });
         } else {
             playerId = "Voucher Request";
         }
@@ -2459,10 +2475,8 @@
             if (!userDoc.exists) return;
             const userData = userDoc.data();
 
-            // Check if user has already given referral reward (Only reward on the FIRST order)
             if (!userData.referralRewarded && userData.referredBy) {
                 const refCode = userData.referredBy.toUpperCase();
-                // Find referrer by support pin
                 const allUsersSnap = await db.collection('users').get();
                 let referrerDocRef = null;
 
@@ -2473,7 +2487,7 @@
                 });
 
                 if (referrerDocRef) {
-                    const bonusAmount = 10; // রেফার বোনাস ১০ টাকা
+                    const bonusAmount = 10;
                     await db.runTransaction(async (transaction) => {
                         const refSnap = await transaction.get(referrerDocRef);
                         if (refSnap.exists) {
@@ -2483,7 +2497,6 @@
                     });
                 }
 
-                // Mark referral as rewarded so it won't repeat
                 await userDocRef.update({ referralRewarded: true });
             }
         } catch (err) {
@@ -2761,7 +2774,6 @@
     // INIT & REFERRAL URL CAPTURE
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
-        // Capture ?ref= from URL
         const urlParams = new URLSearchParams(window.location.search);
         const refParam = urlParams.get('ref');
         if (refParam) {
