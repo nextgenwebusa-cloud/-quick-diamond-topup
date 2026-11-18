@@ -1414,7 +1414,10 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" id="login-pass" class="form-input" placeholder="Enter your password">
-            </div>
+            <div style="text-align: right; margin-bottom: 12px;">
+    <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: var(--primary); text-decoration: none;">Forgot password?</a>
+</div>
+
             <button class="btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
             <div class="auth-footer">
                 New user to Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ? <a href="#" onclick="toggleAuth('register')">Create an account</a>
@@ -2704,7 +2707,22 @@
         document.getElementById('home-sec').style.display = 'block';
         
         console.log('%c✅ Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ System Loaded', 'color:#6d28d9;font-weight:bold;font-size:14px;');
-   });
+   function handleForgotPassword(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    if (!email) {
+        alert("দয়া করে প্রথমে আপনার ইমেইল ঠিকানাটি লিখুন!");
+        return;
+    }
+    firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+            alert("পাসওয়ার্ড রিসেটের লিংক আপনার ইমেইলে পাঠানো হয়েছে!");
+        })
+        .catch((error) => {
+            alert("সমস্যা হয়েছে: " + error.message);
+        });
+}
+
 </script> <!-- এখানে জাভাস্ক্রিপ্ট ট্যাগ বন্ধ করতে হবে -->
 
 <!-- ফ্লোটিং অ্যাপ ইন্সটল বাটন -->
