@@ -1196,13 +1196,15 @@
                     </div>
                     <button onclick="goToMethodStep()" class="btn-primary">PROCEED TO PAYMENT</button>
                 </div>
-                <div class="step-card" id="tutorial-video-box" style="display:none;">
+                
+                <!-- ইউটিউব ভিডিও সেকশন (এখানে সরাসরি এমবেড কোড যুক্ত করা হয়েছে) -->
+                <div class="step-card" id="tutorial-video-box">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                         <i class="fab fa-youtube" style="color:#dc2626;"></i>
                         <h4 style="font-size:13px;font-weight:700;">Tutorial: How to Add Money</h4>
                     </div>
                     <div style="border-radius:8px;overflow:hidden;background:#f3f4f6;aspect-ratio:16/9;">
-                        <iframe id="new-tutorial-video" src="" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
+                        <iframe id="new-tutorial-video" src="https://www.youtube.com/embed/MPu3dZ7rorg" style="width:100%;height:100%;border:none;" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1660,7 +1662,6 @@
         auth.signInWithRedirect(provider);
     }
 
-    // গুগল লগইন হয়ে ফিরে আসার পর ডাটা সেভ করার কোড
     auth.getRedirectResult().then((result) => {
         if (result.user) {
             const user = result.user;
@@ -1847,11 +1848,6 @@
                 document.getElementById('footer-tg').href = tgLink;
                 document.getElementById('footer-yt').href = ytLink;
                 document.getElementById('footer-mail').href = `mailto:${data.email || ''}`;
-
-                if (data.howToAddMoney) {
-                    document.getElementById('tutorial-video-box').style.display = 'block';
-                    document.getElementById('new-tutorial-video').src = `https://www.youtube.com/embed/${data.howToAddMoney}`;
-                }
             }
             
             const activeBrand = (doc.exists && doc.data().siteName ? doc.data().siteName.trim() : getBrandName()) || getBrandName();
