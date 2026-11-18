@@ -1657,7 +1657,12 @@
     function handleGoogleLogin() {
         var provider = new firebase.auth.GoogleAuthProvider();
         Swal.fire({ title: 'Connecting to Google...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        auth.signInWithPopup(provider).then((result) => {
+        auth.signInWithRedirect(provider);
+    }
+
+    // গুগল লগইন হয়ে ফিরে আসার পর ডাটা সেভ করার কোড
+    auth.getRedirectResult().then((result) => {
+        if (result.user) {
             const user = result.user;
             const userRef = db.collection('users').doc(user.uid);
             userRef.get().then((docSnapshot) => {
@@ -1680,15 +1685,11 @@
                 showConfirmButton: false,
                 timer: 1500
             });
-        }).catch((error) => {
-            console.error("Google login error:", error);
-            if (error.code !== 'auth/popup-closed-by-user') {
-                Swal.fire('Error', error.message, 'error');
-            } else {
-                Swal.close();
-            }
-        });
-    }
+        }
+    }).catch((error) => {
+        console.error("Google redirect error:", error);
+        Swal.fire('Error', error.message, 'error');
+    });
 
     function handleLogout() {
         auth.signOut().then(() => {
@@ -2687,17 +2688,18 @@
 
     function handleForgotPassword(e) {
         e.preventDefault();
-        const email = document.getElementById('login-email').value;
+        const email = document.getElementById('login-email').value.trim();
         if (!email) {
-            alert("দয়া করে প্রথমে আপনার ইমেইল ঠিকানাটি লিখুন!");
+            Swal.fire('Error', 'দয়া করে প্রথমে আপনার ইমেইল ঠিকানাটি লিখুন!', 'warning');
             return;
         }
-        firebase.auth().sendPasswordResetEmail(email)
+        Swal.fire({ title: 'Sending reset link...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        auth.sendPasswordResetEmail(email)
             .then(() => {
-                alert("পাসওয়ার্ড রিসেটের লিংক আপনার ইমেইলে পাঠানো হয়েছে!");
+                Swal.fire('Success', 'পাসওয়ার্ড রিসেটের লিংক আপনার ইমেইলে পাঠানো হয়েছে!', 'success');
             })
             .catch((error) => {
-                alert("সমস্যা হয়েছে: " + error.message);
+                Swal.fire('Error', 'সমস্যা হয়েছে: ' + error.message, 'error');
             });
     }
 </script>
