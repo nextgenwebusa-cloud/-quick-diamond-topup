@@ -422,59 +422,175 @@
             border: 4px solid white;
         }
         .nav-item-center i { font-size: 22px; }
+
+        /* ANIMATED AUTH SCREEN */
+        @keyframes logoDrop {
+            0% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        @keyframes floatElement {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        @keyframes cardUp {
+            0% { transform: translateY(40px) scale(0.96); opacity: 0; }
+            100% { transform: none; opacity: 1; }
+        }
+        @keyframes gradMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
         .auth-screen {
             position: fixed;
             inset: 0;
-            background: white;
+            background: linear-gradient(135deg, #6d28d9, #1e1b4b, #be185d, #4c1d95);
+            background-size: 300% 300%;
+            animation: gradMove 14s ease infinite;
+            color: #fff;
             z-index: 200;
             overflow-y: auto;
-            padding: 20px;
+            padding: 20px 16px 40px;
             display: none;
         }
         .auth-screen.active { display: block; }
-        .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .auth-back { font-size: 20px; color: var(--text-dark); background: none; border: none; cursor: pointer; }
-        .auth-logo { display: flex; align-items: center; gap: 8px; }
-        .auth-title { font-size: 28px; font-weight: 800; color: var(--secondary); margin-bottom: 8px; }
-        .auth-subtitle { font-size: 13px; color: var(--text-light); margin-bottom: 24px; }
-        .auth-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        .auth-screen::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(167, 139, 250, 0.35), transparent 45%),
+                        radial-gradient(circle at 85% 85%, rgba(244, 114, 182, 0.3), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
         }
-        .auth-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-        .auth-card p { font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+        .floating-bg-shape {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatElement 6s ease-in-out infinite;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .floating-bg-shape.sq { border-radius: 18px; }
+
+        .auth-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .auth-back { font-size: 20px; color: #fff; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.2); width: 38px; height: 38px; border-radius: 12px; cursor: pointer; display: grid; place-items: center; }
+        .auth-logo { display: flex; align-items: center; gap: 8px; }
+
+        .auth-hero-logo-wrap {
+            position: relative;
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 14px;
+            display: grid;
+            place-items: center;
+        }
+        .auth-hero-logo {
+            animation: logoDrop 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            width: 78px;
+            height: 78px;
+            border-radius: 24px;
+            display: grid;
+            place-items: center;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #c4b5fd, #f472b6);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+        .auth-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: pulseRing 2.4s ease-out infinite;
+            animation-delay: 1.3s;
+            opacity: 0;
+        }
+        .auth-ring.r2 { animation-delay: 2.5s; }
+
+        .auth-title { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; text-align: center; animation: cardUp 0.8s 0.4s ease both; }
+        .auth-subtitle { font-size: 13px; color: #e9d5ff; margin-bottom: 20px; text-align: center; animation: cardUp 0.8s 0.5s ease both; }
+        .auth-card {
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 24px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+            animation: cardUp 0.9s 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+        .auth-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+        .auth-card p { font-size: 12px; color: #e9d5ff; margin-bottom: 18px; }
         .google-btn {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 16px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255, 255, 255, 0.28);
             border-radius: 12px;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             cursor: pointer;
             transition: 0.2s;
             margin-bottom: 16px;
         }
-        .google-btn:active { background: #f9fafb; }
+        .google-btn:active { transform: scale(0.98); }
         .google-btn img { width: 20px; }
-        .google-btn span { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+        .google-btn span { font-size: 13px; font-weight: 700; color: var(--text-dark); }
         .divider {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin: 20px 0;
-            color: #9ca3af;
+            margin: 18px 0;
+            color: #e9d5ff;
             font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
         }
-        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.25); }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: #f5d0fe; margin-bottom: 6px; }
+        .auth-card .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            transition: 0.2s;
+            outline: none;
+        }
+        .auth-card .form-input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .auth-card .form-input:focus {
+            border-color: #f0abfc;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(240, 171, 252, 0.22);
+        }
+        .auth-card .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            box-shadow: 0 10px 24px rgba(236, 72, 153, 0.35);
+        }
+        .auth-footer { text-align: center; margin-top: 16px; font-size: 12px; color: #e9d5ff; }
+        .auth-footer a { color: #f5d0fe; font-weight: 700; text-decoration: underline; }
+
         .form-input {
             width: 100%;
             padding: 12px 16px;
@@ -507,8 +623,7 @@
             gap: 8px;
         }
         .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
-        .auth-footer { text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-light); }
-        .auth-footer a { color: var(--primary); font-weight: 700; text-decoration: none; }
+
         .topup-section { display: none; padding-bottom: 40px; }
         .topup-section.active { display: block; }
         .topup-header {
@@ -659,6 +774,9 @@
         .loader { display: flex; justify-content: center; padding: 20px; }
         .loader i { font-size: 24px; color: var(--primary); animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+        }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -1035,86 +1153,103 @@
 
 </div>
 
-<!-- AUTH SCREEN -->
+<!-- AUTH SCREEN WITH ANIMATIONS -->
 <div class="auth-screen" id="auth-sec">
-    <div class="auth-header">
-        <button class="auth-back" onclick="closeAuth()"><i class="fas fa-arrow-left"></i></button>
-        <div class="auth-logo">
-            <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">FT</div>
-            <div class="logo-text"><h1 id="auth-site-brand-name" style="font-size:12px;">Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ</h1><span style="font-size:8px;">FREE FIRE</span></div>
-        </div>
-        <div style="width:20px;"></div>
-    </div>
+    <div class="floating-bg-shape" style="top: 18%; left: 8%;"></div>
+    <div class="floating-bg-shape" style="top: 68%; right: 10%; width: 92px; height: 92px; animation-delay: 2s;"></div>
+    <div class="floating-bg-shape sq" style="top: 9%; right: 16%; width: 42px; height: 42px; animation-delay: 1s;"></div>
+    <div class="floating-bg-shape sq" style="bottom: 8%; left: 12%; width: 70px; height: 70px; animation-delay: 3s;"></div>
 
-    <div id="login-view">
-        <h2 class="auth-title">Welcome Back</h2>
-        <p class="auth-subtitle">Fast, secure and simple access to your Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ account.</p>
-        <div class="auth-card">
-            <h3>Sign in to continue</h3>
-            <p>Access your account securely</p>
-            <button class="google-btn" onclick="handleGoogleLogin()">
-                <div style="display:flex;align-items:center;gap:10px;">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
-                    <span>Continue with Google</span>
-                </div>
-                <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
-            </button>
-            <div class="divider">OR CONTINUE WITH EMAIL</div>
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" id="login-email" class="form-input" placeholder="Enter your email">
+    <div class="auth-inner">
+        <div class="auth-header">
+            <button class="auth-back" onclick="closeAuth()"><i class="fas fa-arrow-left"></i></button>
+            <div class="auth-logo">
+                <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">FT</div>
+                <div class="logo-text"><h1 id="auth-site-brand-name" style="font-size:12px;color:#fff;">Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ</h1><span style="font-size:8px;">FREE FIRE</span></div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="login-pass" class="form-input" placeholder="Enter your password">
-            </div>
-            <div style="text-align: right; margin-bottom: 12px;">
-                <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: var(--primary); text-decoration: none;">Forgot password?</a>
-            </div>
-            <button class="btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
-            <div class="auth-footer">
-                New user to Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ? <a href="#" onclick="toggleAuth('register')">Create an account</a>
+            <div style="width:38px;"></div>
+        </div>
+
+        <div class="auth-hero-logo-wrap">
+            <div class="auth-ring"></div>
+            <div class="auth-ring r2"></div>
+            <div class="auth-hero-logo">
+                <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l2.6 6.4L21 9.3l-5 4.4 1.6 6.6L12 16.8 6.4 20.3 8 13.7 3 9.3l6.4-.9z"/>
+                </svg>
             </div>
         </div>
-    </div>
 
-    <div id="register-view" style="display:none;">
-        <h2 class="auth-title">Create your account</h2>
-        <p class="auth-subtitle">Register once and enjoy faster orders, secure wallet access.</p>
-        <div class="auth-card">
-            <h3>Create an account</h3>
-            <p>Enter your details to get started</p>
-            <button class="google-btn" onclick="handleGoogleLogin()">
-                <div style="display:flex;align-items:center;gap:10px;">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
-                    <span>Continue with Google</span>
+        <div id="login-view">
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Fast, secure and simple access to your Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ account.</p>
+            <div class="auth-card">
+                <h3>Sign in to continue</h3>
+                <p>Access your account securely</p>
+                <button class="google-btn" onclick="handleGoogleLogin()">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                        <span>Continue with Google</span>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
+                </button>
+                <div class="divider">OR CONTINUE WITH EMAIL</div>
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" id="login-email" class="form-input" placeholder="Enter your email">
                 </div>
-                <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
-            </button>
-            <div class="divider">OR REGISTER WITH DETAILS</div>
-            <div class="form-group">
-                <label>Full name</label>
-                <input type="text" id="reg-name" class="form-input" placeholder="Enter your full name">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-pass" class="form-input" placeholder="Enter your password">
+                </div>
+                <div style="text-align: right; margin-bottom: 12px;">
+                    <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: #f5d0fe; text-decoration: none;">Forgot password?</a>
+                </div>
+                <button class="btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+                <div class="auth-footer">
+                    New user to Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ? <a href="#" onclick="toggleAuth('register')">Create an account</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Phone number</label>
-                <input type="number" id="reg-phone" class="form-input" placeholder="Enter phone number">
-            </div>
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" id="reg-email" class="form-input" placeholder="Enter your email">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="reg-pass" class="form-input" placeholder="Create password">
-            </div>
-            <div class="form-group">
-                <label>Referral Code (Optional)</label>
-                <input type="text" id="reg-ref-code" class="form-input" placeholder="Enter referral code if you have">
-            </div>
-            <button class="btn-primary" onclick="handleRegister()"><i class="fas fa-user-plus"></i> Create Account</button>
-            <div class="auth-footer">
-                Already have an account? <a href="#" onclick="toggleAuth('login')">Sign in</a>
+        </div>
+
+        <div id="register-view" style="display:none;">
+            <h2 class="auth-title">Create your account</h2>
+            <p class="auth-subtitle">Register once and enjoy faster orders, secure wallet access.</p>
+            <div class="auth-card">
+                <h3>Create an account</h3>
+                <p>Enter your details to get started</p>
+                <button class="google-btn" onclick="handleGoogleLogin()">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                        <span>Continue with Google</span>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
+                </button>
+                <div class="divider">OR REGISTER WITH DETAILS</div>
+                <div class="form-group">
+                    <label>Full name</label>
+                    <input type="text" id="reg-name" class="form-input" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Phone number</label>
+                    <input type="number" id="reg-phone" class="form-input" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" id="reg-email" class="form-input" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="reg-pass" class="form-input" placeholder="Create password">
+                </div>
+                <div class="form-group">
+                    <label>Referral Code (Optional)</label>
+                    <input type="text" id="reg-ref-code" class="form-input" placeholder="Enter referral code if you have">
+                </div>
+                <button class="btn-primary" onclick="handleRegister()"><i class="fas fa-user-plus"></i> Create Account</button>
+                <div class="auth-footer">
+                    Already have an account? <a href="#" onclick="toggleAuth('login')">Sign in</a>
+                </div>
             </div>
         </div>
     </div>
@@ -1661,9 +1796,7 @@
         });
     }
 
-    // ============================================================
-    // OPEN TOPUP OR SUBSCRIPTION PAGE (DYNAMIC FIELD SWITCHING)
-    // ============================================================
+    // OPEN TOPUP OR SUBSCRIPTION PAGE
     function isSubscriptionService(gameId, gameName) {
         const game = gamesData[gameId] || {};
         if (game.type === 'subscription') return true;
