@@ -999,11 +999,23 @@
             cursor: pointer;
             transition: 0.2s;
             background: #f9fafb;
+            position: relative;
         }
         .product-card.selected {
             border-color: var(--primary);
             background: #f3e8ff;
             box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.2);
+        }
+        .product-card.out-of-stock {
+            border-color: #fecaca;
+            background: #fef2f2;
+            opacity: 0.72;
+            cursor: not-allowed;
+        }
+        .product-card.out-of-stock .price {
+            color: #dc2626;
+            font-size: 11px;
+            font-weight: 800;
         }
         .product-card .name { font-size: 11px; font-weight: 600; color: var(--text-dark); }
         .product-card .price { font-size: 13px; font-weight: 700; color: var(--primary); }
@@ -1773,6 +1785,7 @@
     let currentDepositAmount = 0;
     let currentPaymentMethod = '';
     let storedRefCode = '';
+    let productsUnsubscribe = null;
 
     // ==========================================
     // PWA SERVICE WORKER & CUSTOM INSTALL BANNER
@@ -1885,6 +1898,10 @@
         if ((secId === 'history' || secId === 'account' || secId === 'addmoney') && !currentUser) {
             showAuthPage();
             return;
+        }
+        if (secId !== 'topup' && typeof productsUnsubscribe === 'function') {
+            productsUnsubscribe();
+            productsUnsubscribe = null;
         }
         document.querySelectorAll('main > section').forEach(s => {
             s.style.display = 'none';
@@ -2420,6 +2437,14 @@
         }
     }
 
+    function isProductOutOfStock(prod) {
+        if (!prod) return false;
+        if (prod.stockOut === true || prod.isStockOut === true || prod.outOfStock === true) return true;
+        if (typeof prod.stockStatus === 'string' && ['out_of_stock', 'out-of-stock', 'stock_out', 'stock-out', 'unavailable'].includes(prod.stockStatus.toLowerCase().trim())) return true;
+        if (typeof prod.status === 'string' && ['out_of_stock', 'out-of-stock', 'stock_out', 'stock-out', 'unavailable'].includes(prod.status.toLowerCase().trim())) return true;
+        return false;
+    }
+
     function openTopUpPage(gameId, gameName, gameImg) {
         selectedGameId = gameId;
         selectedGameName = gameName;
@@ -2473,33 +2498,62 @@
 
         showSec('topup');
 
+        if (typeof productsUnsubscribe === 'function') {
+            productsUnsubscribe();
+            productsUnsubscribe = null;
+        }
+
         const grid = document.getElementById('products-grid');
         const loader = document.getElementById('product-loader');
         grid.innerHTML = "";
         loader.classList.remove('hidden');
 
-        db.collection('services').doc(gameId).collection('products').orderBy('price', 'asc').get()
-            .then((snapshot) => {
+        productsUnsubscribe = db.collection('services').doc(gameId).collection('products').orderBy('price', 'asc')
+            .onSnapshot((snapshot) => {
                 loader.classList.add('hidden');
+                grid.innerHTML = "";
                 if (snapshot.empty) {
+                    selectedProduct = null;
                     grid.innerHTML = `<div style="grid-column: span 2;text-align:center;color:#9ca3af;padding:20px;">No packages available</div>`;
                     return;
                 }
                 snapshot.forEach(doc => {
                     const prod = doc.data();
+                    const outOfStock = isProductOutOfStock(prod);
+                    if (selectedProduct && selectedProduct.id === doc.id && outOfStock) {
+                        selectedProduct = null;
+                    }
+                    const isSelected = !outOfStock && selectedProduct && selectedProduct.id === doc.id;
                     const card = document.createElement('div');
-                    card.className = "product-card";
+                    card.className = `product-card${outOfStock ? ' out-of-stock' : ''}${isSelected ? ' selected' : ''}`;
                     card.dataset.productId = doc.id;
-                    card.onclick = () => selectProduct(card, prod.name, prod.price, doc.id);
-                    card.innerHTML = `
-                        <span class="name">${prod.name}</span>
-                        <span class="price">৳${prod.price}</span>`;
+                    if (outOfStock) {
+                        card.setAttribute('aria-disabled', 'true');
+                        card.onclick = () => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Stock Out',
+                                text: `${prod.name} প্যাকেজটি বর্তমানে স্টক আউট রয়েছে। অনুগ্রহ করে পরে চেষ্টা করুন।`,
+                                confirmButtonColor: '#6d28d9'
+                            });
+                        };
+                        card.innerHTML = `
+                            <span class="name">${prod.name}</span>
+                            <span class="price">Stock Out</span>`;
+                    } else {
+                        card.removeAttribute('aria-disabled');
+                        card.onclick = () => selectProduct(card, prod.name, prod.price, doc.id);
+                        card.innerHTML = `
+                            <span class="name">${prod.name}</span>
+                            <span class="price">৳${prod.price}</span>`;
+                    }
                     grid.appendChild(card);
                 });
             });
     }
 
     function selectProduct(element, name, price, id) {
+        if (element.classList.contains('out-of-stock')) return;
         document.querySelectorAll('.product-card').forEach(el => el.classList.remove('selected'));
         element.classList.add('selected');
         selectedProduct = { id: id, name: name, price: parseInt(price) };
@@ -2539,34 +2593,49 @@
 
         if (!selectedProduct) return Swal.fire({ icon: 'warning', title: 'Select Pack', text: 'Please select a package!' });
 
-        if (selectedPaymentMethod === 'instant') {
-            isDirectBuy = true;
-            currentDepositAmount = selectedProduct.price;
-            pendingDirectOrder = { playerId: accountInfo, product: selectedProduct, gameId: selectedGameId, gameName: selectedGameName, gameType: selectedGameType };
-            showSec('addmoney');
-            document.getElementById('am-step-1').style.display = 'none';
-            document.getElementById('am-step-2').style.display = 'block';
-            document.getElementById('am-step-3').style.display = 'none';
-            return;
-        }
+        db.collection('services').doc(selectedGameId).collection('products').doc(selectedProduct.id).get()
+            .then((prodDoc) => {
+                if (!prodDoc.exists || isProductOutOfStock(prodDoc.data())) {
+                    selectedProduct = null;
+                    document.querySelectorAll('.product-card').forEach(el => el.classList.remove('selected'));
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Stock Out',
+                        text: 'দুঃখিত, এই প্যাকেজটি বর্তমানে স্টক আউট হয়ে গেছে।',
+                        confirmButtonColor: '#6d28d9'
+                    });
+                    return;
+                }
 
-        if (userBalance < selectedProduct.price) return Swal.fire({ icon: 'error', title: 'Low Balance', text: 'Please Add Money first.' });
+                if (selectedPaymentMethod === 'instant') {
+                    isDirectBuy = true;
+                    currentDepositAmount = selectedProduct.price;
+                    pendingDirectOrder = { playerId: accountInfo, product: selectedProduct, gameId: selectedGameId, gameName: selectedGameName, gameType: selectedGameType };
+                    showSec('addmoney');
+                    document.getElementById('am-step-1').style.display = 'none';
+                    document.getElementById('am-step-2').style.display = 'block';
+                    document.getElementById('am-step-3').style.display = 'none';
+                    return;
+                }
 
-        const infoLabel = selectedGameType === 'subscription' ? 'Gmail' : 'Player ID';
-        Swal.fire({
-            title: 'Confirm Purchase?',
-            html: `Item: ${selectedProduct.name}<br>${infoLabel}: <b>${accountInfo}</b><br>Price: ৳${selectedProduct.price}`,
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#6d28d9',
-            confirmButtonText: 'Yes, Buy Now'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.showLoading();
-                if (selectedGameType === 'code') processVoucherOrder(accountInfo);
-                else processUidOrder(accountInfo, selectedGameType);
-            }
-        });
+                if (userBalance < selectedProduct.price) return Swal.fire({ icon: 'error', title: 'Low Balance', text: 'Please Add Money first.' });
+
+                const infoLabel = selectedGameType === 'subscription' ? 'Gmail' : 'Player ID';
+                Swal.fire({
+                    title: 'Confirm Purchase?',
+                    html: `Item: ${selectedProduct.name}<br>${infoLabel}: <b>${accountInfo}</b><br>Price: ৳${selectedProduct.price}`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#6d28d9',
+                    confirmButtonText: 'Yes, Buy Now'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.showLoading();
+                        if (selectedGameType === 'code') processVoucherOrder(accountInfo);
+                        else processUidOrder(accountInfo, selectedGameType);
+                    }
+                });
+            });
     }
 
     async function processVoucherOrder(playerId) {
