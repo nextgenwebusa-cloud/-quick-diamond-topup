@@ -798,6 +798,50 @@
         }
         .product-card .name { font-size: 11px; font-weight: 600; color: var(--text-dark); }
         .product-card .price { font-size: 13px; font-weight: 700; color: var(--primary); }
+
+        /* HOW TO ORDER BUTTON STYLE */
+        .how-to-order-btn {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            color: #2563eb;
+            transition: 0.2s;
+            width: 100%;
+        }
+        .how-to-order-btn:active {
+            transform: scale(0.98);
+            opacity: 0.85;
+        }
+        .how-to-order-icon-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .how-to-order-arrow {
+            color: #ea580c;
+            font-size: 14px;
+            margin-left: 2px;
+        }
+
         .payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
         .pay-option {
             border: 2px solid var(--border);
@@ -1008,6 +1052,15 @@
                 </div>
                 <div id="product-loader" class="loader hidden"><i class="fas fa-spinner"></i></div>
                 <div class="product-grid" id="products-grid"></div>
+
+                <!-- কিভাবে অর্ডার করবেন? বাটন (শুধুমাত্র ইন-গেম টপ-আপে দেখাবে) -->
+                <div id="how-to-order-wrapper" style="display:none;">
+                    <button type="button" onclick="openHowToOrderTutorial()" class="how-to-order-btn">
+                        <span class="how-to-order-icon-box"><i class="fas fa-play"></i></span>
+                        <span>কিভাবে অর্ডার করবেন?</span>
+                        <i class="fas fa-arrow-right how-to-order-arrow"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Step 2: Account Info -->
@@ -1409,6 +1462,10 @@
 
     const DEFAULT_SITE_NAME = "Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ";
     const DEVELOPER_TELEGRAM = "https://t.me/+RNskvby_DOUzNjA9";
+    
+    // ডিফল্ট "কিভাবে অর্ডার করবেন?" ইউটিউব ভিডিও লিংক (আপনি চাইলে এখানে লিংক বদলাতে পারবেন)
+    const DEFAULT_HOW_TO_ORDER_URL = "https://youtube.com/shorts/MPu3dZ7rorg?feature=share";
+
     function getBrandName() { return DEFAULT_SITE_NAME; }
 
     let currentUser = null;
@@ -2025,6 +2082,42 @@
         return keywords.some(kw => lowerName.includes(kw) || catName.includes(kw));
     }
 
+    // ইউটিউব ভিডিও লিংক থেকে Embed ID বের করার ফাংশন
+    function getYoutubeEmbedUrl(url) {
+        if (!url) return null;
+        const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+        const match = url.match(regExp);
+        return match && match[1] ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : null;
+    }
+
+    // "কিভাবে অর্ডার করবেন?" বাটনে ক্লিক করলে ভিডিও ওপেন হবে
+    function openHowToOrderTutorial() {
+        const game = gamesData[selectedGameId] || {};
+        // ফায়ারবেসে ওই গেমের জন্য আলাদা tutorialUrl থাকলে সেটা নেবে, নাহলে ডিফল্ট লিংক নেবে
+        const videoUrl = (game.tutorialUrl && game.tutorialUrl.trim()) ? game.tutorialUrl.trim() : DEFAULT_HOW_TO_ORDER_URL;
+        const embedUrl = getYoutubeEmbedUrl(videoUrl);
+
+        if (embedUrl) {
+            Swal.fire({
+                title: '<span style="font-size:16px;font-weight:800;color:#1e1b4b;"><i class="fab fa-youtube" style="color:#dc2626;margin-right:6px;"></i>কিভাবে অর্ডার করবেন?</span>',
+                html: `
+                    <div style="border-radius:12px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:380px;margin:0 auto 12px;">
+                        <iframe src="${embedUrl}" style="width:100%;height:100%;border:none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <a href="${videoUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background:#dc2626;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">
+                        <i class="fab fa-youtube"></i> সরাসরি YouTube-এ দেখুন
+                    </a>
+                `,
+                showCloseButton: true,
+                showConfirmButton: false,
+                width: '360px',
+                padding: '16px'
+            });
+        } else {
+            window.open(videoUrl, '_blank');
+        }
+    }
+
     function openTopUpPage(gameId, gameName, gameImg) {
         selectedGameId = gameId;
         selectedGameName = gameName;
@@ -2044,22 +2137,27 @@
         const playerSection = document.getElementById('player-id-section');
         const accountLabel = document.getElementById('account-label');
         const playerInput = document.getElementById('game-player-id');
+        const howToOrderWrapper = document.getElementById('how-to-order-wrapper');
 
         if (selectedGameType === 'code') {
             playerSection.style.display = 'none';
             document.getElementById('topup-sub-title').innerText = gameName + " (Instant Voucher)";
+            if (howToOrderWrapper) howToOrderWrapper.style.display = 'none';
         } else if (selectedGameType === 'subscription') {
             playerSection.style.display = 'block';
             accountLabel.innerText = 'Gmail Address';
             playerInput.type = 'email';
             playerInput.placeholder = 'আপনার জিমেইল অ্যাড্রেস লিখুন (example@gmail.com)';
             document.getElementById('topup-sub-title').innerText = gameName + " (Gmail Subscription)";
+            if (howToOrderWrapper) howToOrderWrapper.style.display = 'none';
         } else {
+            // শুধুমাত্র ইন-গেম টপ-আপে "কিভাবে অর্ডার করবেন?" বাটনটি দেখাবে
             playerSection.style.display = 'block';
             accountLabel.innerText = 'Player ID';
             playerInput.type = 'text';
             playerInput.placeholder = 'Enter Player ID';
             document.getElementById('topup-sub-title').innerText = gameName + " (Player ID)";
+            if (howToOrderWrapper) howToOrderWrapper.style.display = 'block';
         }
 
         const rulesBox = document.getElementById('game-rules-box');
