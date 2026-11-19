@@ -29,6 +29,23 @@
             border: 1px solid rgba(255, 255, 255, 0.65);
             box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.06);
         }
+
+        /* SMOOTH LEFT-RIGHT NOTICE MARQUEE */
+        .admin-notice-marquee-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .admin-notice-marquee-text {
+            display: inline-block;
+            animation: notice-pingpong 10s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        @keyframes notice-pingpong {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(calc(-100% + 260px)); }
+        }
+
         .sidebar {
             width: 270px;
             height: 100vh;
@@ -807,6 +824,16 @@
                     <div class="mt-3">
                         <label class="text-xs font-bold text-slate-500">Notice</label>
                         <textarea id="set-notice" class="form-input mt-1 resize-none" rows="2"></textarea>
+                    </div>
+                    <div class="grid-2 mt-2">
+                        <div>
+                            <label class="text-xs font-bold text-slate-500">Entry Popup Banner URL</label>
+                            <input type="text" id="set-popup-banner" class="form-input mt-1" placeholder="Popup Banner Image URL">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-500">Entry Popup Notice</label>
+                            <input type="text" id="set-popup-notice" class="form-input mt-1" placeholder="Popup Notice Text">
+                        </div>
                     </div>
                     <div class="grid-2 mt-2">
                         <div>
@@ -1647,6 +1674,8 @@
                 setVal('set-site-name', data.siteName || 'Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ');
                 setVal('set-logo-url', data.logoUrl);
                 setVal('set-notice', data.notice);
+                setVal('set-popup-banner', data.popupBannerUrl);
+                setVal('set-popup-notice', data.popupNotice);
                 setVal('set-app-link', data.appLink);
                 setVal('set-email', data.email);
                 setVal('set-telegram', data.telegram);
@@ -1720,6 +1749,8 @@
                     siteName: getVal('set-site-name').trim() || 'Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ',
                     logoUrl: getVal('set-logo-url'),
                     notice: getVal('set-notice'),
+                    popupBannerUrl: getVal('set-popup-banner').trim(),
+                    popupNotice: getVal('set-popup-notice').trim(),
                     appLink: getVal('set-app-link'),
                     email: getVal('set-email'),
                     telegram: getVal('set-telegram'),
