@@ -506,6 +506,142 @@
         }
         .nav-item-center i { font-size: 22px; }
 
+        /* WHATSAPP LIVE CHAT FLOATING BUTTON & POPUP */
+        .whatsapp-live-chat-btn {
+            position: fixed;
+            bottom: 84px;
+            right: 16px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.42);
+            cursor: pointer;
+            z-index: 145;
+            transition: bottom 0.3s ease, transform 0.2s ease;
+        }
+        .whatsapp-live-chat-btn.banner-visible {
+            bottom: 158px;
+        }
+        .whatsapp-live-chat-btn:active {
+            transform: scale(0.95);
+        }
+        .whatsapp-live-chat-btn i {
+            font-size: 20px;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #bbf7d0;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+        }
+
+        .whatsapp-chat-modal {
+            position: fixed;
+            bottom: 150px;
+            right: 16px;
+            width: 310px;
+            max-width: calc(100vw - 32px);
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 16px 40px rgba(30, 27, 75, 0.25);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            z-index: 160;
+            display: none;
+            animation: slideUpBanner 0.25s ease forwards;
+        }
+        .whatsapp-chat-modal.banner-visible {
+            bottom: 224px;
+        }
+        .whatsapp-chat-modal.open {
+            display: block;
+        }
+        .wa-chat-header {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #ffffff;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .wa-chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .wa-chat-header-info i {
+            font-size: 24px;
+        }
+        .wa-chat-header-info h4 {
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .wa-chat-header-info span {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        .wa-chat-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #ffffff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .wa-chat-body {
+            padding: 14px;
+            background: #f9fafb;
+        }
+        .wa-chat-bubble {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .wa-chat-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 9px 11px;
+            font-size: 12px;
+            outline: none;
+            background: #ffffff;
+            margin-bottom: 10px;
+        }
+        .wa-chat-input:focus {
+            border-color: #25D366;
+        }
+        .wa-chat-send-btn {
+            width: 100%;
+            background: #25D366;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+
         /* CUSTOM FLOATING PWA INSTALL BANNER */
         .pwa-install-banner {
             position: fixed;
@@ -1372,6 +1508,37 @@
         </a>
     </footer>
 
+    <!-- WHATSAPP LIVE CHAT POPUP & FLOATING BUTTON -->
+    <div id="whatsapp-chat-modal" class="whatsapp-chat-modal" role="dialog" aria-label="WhatsApp Live Chat">
+        <div class="wa-chat-header">
+            <div class="wa-chat-header-info">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                    <h4>WhatsApp Live Chat</h4>
+                    <span>Online Support • দ্রুত রিপ্লাই</span>
+                </div>
+            </div>
+            <button type="button" class="wa-chat-close" onclick="toggleWhatsappChatModal()" aria-label="Close Chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wa-chat-body">
+            <div class="wa-chat-bubble">
+                আসসালামু আলাইকুম! কোনো সমস্যা বা অর্ডার সংক্রান্ত সাহায্যের জন্য নিচে মেসেজ লিখে WhatsApp-এ পাঠান।
+            </div>
+            <input type="text" id="wa-live-message-input" class="wa-chat-input" placeholder="আপনার মেসেজ লিখুন..." onkeydown="if(event.key==='Enter') sendWhatsappLiveMessage()">
+            <button type="button" class="wa-chat-send-btn" onclick="sendWhatsappLiveMessage()">
+                <i class="fab fa-whatsapp"></i> WhatsApp-এ চ্যাট শুরু করুন
+            </button>
+        </div>
+    </div>
+
+    <button type="button" id="whatsapp-live-chat-btn" class="whatsapp-live-chat-btn" onclick="toggleWhatsappChatModal()" aria-label="Live Chat">
+        <span class="live-dot"></span>
+        <i class="fab fa-whatsapp"></i>
+        <span>Live Chat</span>
+    </button>
+
     <!-- CUSTOM FLOATING PWA INSTALL BANNER -->
     <div id="pwa-install-banner" class="pwa-install-banner show" role="region" aria-label="Install App">
         <div class="pwa-banner-left">
@@ -1539,6 +1706,56 @@
     // নতুন "কিভাবে অর্ডার করবেন?" ইউটিউব ভিডিও লিংক আপডেট করা হয়েছে
     const DEFAULT_HOW_TO_ORDER_URL = "https://youtube.com/shorts/D8_ZIA8yjQo?feature=share";
 
+    // WhatsApp Live Chat নম্বর (Firestore-এ whatsapp সেট করা থাকলে সেটি অটো ব্যবহার হবে)
+    let liveWhatsappNumber = "8801700000000";
+
+    function sanitizeWhatsappNumber(raw) {
+        let cleaned = String(raw || '').replace(/[^0-9]/g, '');
+        if (!cleaned) return "";
+        if (cleaned.startsWith('01') && cleaned.length === 11) {
+            cleaned = '88' + cleaned;
+        }
+        return cleaned;
+    }
+
+    function syncFloatingWidgetsPosition() {
+        const banner = document.getElementById('pwa-install-banner');
+        const waBtn = document.getElementById('whatsapp-live-chat-btn');
+        const waModal = document.getElementById('whatsapp-chat-modal');
+        const isBannerVisible = banner && banner.classList.contains('show');
+
+        if (waBtn) {
+            waBtn.style.display = 'flex';
+            waBtn.classList.toggle('banner-visible', Boolean(isBannerVisible));
+        }
+        if (waModal) {
+            waModal.classList.toggle('banner-visible', Boolean(isBannerVisible));
+        }
+    }
+
+    function toggleWhatsappChatModal() {
+        const modal = document.getElementById('whatsapp-chat-modal');
+        if (!modal) return;
+        modal.classList.toggle('open');
+        if (modal.classList.contains('open')) {
+            setTimeout(() => {
+                const input = document.getElementById('wa-live-message-input');
+                if (input) input.focus();
+            }, 100);
+        }
+    }
+
+    function sendWhatsappLiveMessage() {
+        const input = document.getElementById('wa-live-message-input');
+        const customMsg = input ? input.value.trim() : '';
+        const defaultMsg = currentUser
+            ? `হ্যালো Quick Diamond সাপোর্ট, আমি ${currentUser.email || ''} থেকে লাইভ চ্যাটে সাহায্য চাচ্ছি।`
+            : 'হ্যালো Quick Diamond সাপোর্ট, আমি লাইভ চ্যাটে সাহায্য চাচ্ছি।';
+        const finalText = encodeURIComponent(customMsg || defaultMsg);
+        const targetNum = sanitizeWhatsappNumber(liveWhatsappNumber) || "8801700000000";
+        window.open(`https://wa.me/${targetNum}?text=${finalText}`, '_blank', 'noopener,noreferrer');
+    }
+
     function getBrandName() { return DEFAULT_SITE_NAME; }
 
     let currentUser = null;
@@ -1585,6 +1802,7 @@
         } else {
             banner.classList.remove('show');
         }
+        syncFloatingWidgetsPosition();
     }
 
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -1601,6 +1819,7 @@
             deferredInstallPrompt = null;
             if (outcome === 'accepted') {
                 if (banner) banner.classList.remove('show');
+                syncFloatingWidgetsPosition();
                 Swal.fire({
                     toast: true,
                     icon: 'success',
@@ -1625,12 +1844,14 @@
         const banner = document.getElementById('pwa-install-banner');
         if (banner) banner.classList.remove('show');
         sessionStorage.setItem('pwa_banner_dismissed', 'true');
+        syncFloatingWidgetsPosition();
     }
 
     window.addEventListener('appinstalled', () => {
         deferredInstallPrompt = null;
         const banner = document.getElementById('pwa-install-banner');
         if (banner) banner.classList.remove('show');
+        syncFloatingWidgetsPosition();
     });
 
     function listenToLiveNotifications() {
@@ -1705,6 +1926,10 @@
         document.querySelector('.bottom-nav').style.display = 'none';
         const banner = document.getElementById('pwa-install-banner');
         if (banner) banner.classList.remove('show');
+        const waBtn = document.getElementById('whatsapp-live-chat-btn');
+        if (waBtn) waBtn.style.display = 'none';
+        const waModal = document.getElementById('whatsapp-chat-modal');
+        if (waModal) waModal.classList.remove('open');
     }
 
     function closeAuth() {
@@ -1941,7 +2166,11 @@
                 document.getElementById('site-brand-name').textContent = brandName;
                 document.getElementById('auth-site-brand-name').textContent = brandName;
 
-                const waNum = data.whatsapp ? String(data.whatsapp).replace(/\s/g, '') : "0";
+                const cleanWa = sanitizeWhatsappNumber(data.whatsapp);
+                if (cleanWa) {
+                    liveWhatsappNumber = cleanWa;
+                }
+                const waNum = cleanWa || "0";
                 document.getElementById('link-whatsapp').href = `https://wa.me/${waNum}`;
                 document.getElementById('link-telegram').href = data.telegram || "#";
                 document.getElementById('footer-fb').href = data.facebook || "#";
