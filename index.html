@@ -1247,14 +1247,14 @@
     </footer>
 
     <!-- CUSTOM FLOATING PWA INSTALL BANNER -->
-    <div id="pwa-install-banner" class="pwa-install-banner" role="region" aria-label="Install App">
+    <div id="pwa-install-banner" class="pwa-install-banner show" role="region" aria-label="Install App">
         <div class="pwa-banner-left">
             <div class="pwa-banner-icon">
                 <img src="1000023388.png" alt="Quick Diamond" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-download\' style=\'color:#6d28d9;font-size:18px;\'></i>';">
             </div>
             <div class="pwa-banner-text">
                 <h4>Install App</h4>
-                <p>Install Quick Diamond for fast top-up</p>
+                <p>দ্রুত টপ-আপ করতে অ্যাপটি ইনস্টল করুন</p>
             </div>
         </div>
         <div class="pwa-banner-actions">
@@ -1444,15 +1444,23 @@
         return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     }
 
+    function syncPwaBannerVisibility() {
+        const banner = document.getElementById('pwa-install-banner');
+        const authOpen = document.getElementById('auth-sec')?.classList.contains('active');
+        const dismissed = sessionStorage.getItem('pwa_banner_dismissed') === 'true';
+
+        if (!banner) return;
+        if (!dismissed && !isAppInstalled() && !authOpen) {
+            banner.classList.add('show');
+        } else {
+            banner.classList.remove('show');
+        }
+    }
+
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredInstallPrompt = e;
-
-        const isDismissed = sessionStorage.getItem('pwa_banner_dismissed');
-        if (!isDismissed && !isAppInstalled()) {
-            const banner = document.getElementById('pwa-install-banner');
-            if (banner) banner.classList.add('show');
-        }
+        syncPwaBannerVisibility();
     });
 
     async function triggerPwaInstall() {
@@ -1461,8 +1469,8 @@
             deferredInstallPrompt.prompt();
             const { outcome } = await deferredInstallPrompt.userChoice;
             deferredInstallPrompt = null;
-            if (banner) banner.classList.remove('show');
             if (outcome === 'accepted') {
+                if (banner) banner.classList.remove('show');
                 Swal.fire({
                     toast: true,
                     icon: 'success',
@@ -1475,7 +1483,7 @@
         } else {
             Swal.fire({
                 title: 'অ্যাপ ইনস্টল করুন',
-                text: 'ব্রাউজারের উপরের মেনু (⋮) থেকে "Add to Home screen" বা "Install app" সিলেক্ট করুন।',
+                html: 'ব্রাউজারের উপরের ডানপাশের <b>⋮ (Three dots)</b> মেনুতে ট্যাপ করে <b>"Add to Home screen"</b> অথবা <b>"Install app"</b> সিলেক্ট করুন।',
                 icon: 'info',
                 confirmButtonColor: '#6d28d9',
                 confirmButtonText: 'ঠিক আছে'
@@ -1556,6 +1564,7 @@
         document.getElementById('main-content').style.display = 'block';
         document.querySelector('.app-footer').style.display = 'block';
         document.querySelector('.bottom-nav').style.display = 'flex';
+        syncPwaBannerVisibility();
         window.scrollTo(0, 0);
     }
 
@@ -1573,10 +1582,7 @@
         document.getElementById('main-content').style.display = 'block';
         document.querySelector('.app-footer').style.display = 'block';
         document.querySelector('.bottom-nav').style.display = 'flex';
-        if (deferredInstallPrompt && !sessionStorage.getItem('pwa_banner_dismissed') && !isAppInstalled()) {
-            const banner = document.getElementById('pwa-install-banner');
-            if (banner) banner.classList.add('show');
-        }
+        syncPwaBannerVisibility();
     }
 
     function toggleAuth(view) {
@@ -2361,6 +2367,7 @@
         listenToLiveNotifications();
         document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
         document.getElementById('home-sec').style.display = 'block';
+        syncPwaBannerVisibility();
     });
 
     function handleForgotPassword(e) {
