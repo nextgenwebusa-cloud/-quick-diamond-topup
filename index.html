@@ -50,8 +50,6 @@
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
-
-        /* Header */
         .app-header {
             background: #ffffff;
             padding: 12px 16px;
@@ -63,11 +61,7 @@
             top: 0;
             z-index: 50;
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .logo-container { display: flex; align-items: center; gap: 8px; }
         .logo-icon {
             width: 40px;
             height: 40px;
@@ -84,20 +78,13 @@
         .logo-icon::after {
             content: '';
             position: absolute;
-            top: -3px;
-            right: -3px;
-            width: 10px;
-            height: 10px;
+            top: -3px; right: -3px;
+            width: 10px; height: 10px;
             background: #facc15;
             border-radius: 50%;
             border: 2px solid white;
         }
-        .logo-text h1 {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
+        .logo-text h1 { font-size: 14px; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
         .logo-text span {
             font-size: 10px;
             font-weight: 700;
@@ -107,11 +94,7 @@
             border-radius: 4px;
             display: inline-block;
         }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .header-right { display: flex; align-items: center; gap: 10px; }
         .balance-badge {
             background: var(--primary);
             color: white;
@@ -137,13 +120,7 @@
             overflow: hidden;
             cursor: pointer;
         }
-        .avatar-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Notice Bar */
+        .avatar-icon img { width: 100%; height: 100%; object-fit: cover; }
         .notice-bar {
             background: #f3e8ff;
             padding: 8px 12px;
@@ -174,8 +151,6 @@
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
-
-        /* Banner Slider */
         .banner-container {
             margin: 12px 16px;
             border-radius: 12px;
@@ -188,48 +163,18 @@
             align-items: center;
             justify-content: center;
         }
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease;
-            height: 160px;
-            width: 100%;
-        }
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
+        .slider-wrapper { display: flex; transition: transform 0.5s ease; height: 160px; width: 100%; }
+        .slider-wrapper img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
         .slider-dots {
             position: absolute;
-            bottom: 8px;
-            left: 0;
-            right: 0;
+            bottom: 8px; left: 0; right: 0;
             display: flex;
             justify-content: center;
             gap: 6px;
         }
-        .slider-dots span {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-        }
-        .slider-dots span.active {
-            background: white;
-            width: 18px;
-            border-radius: 4px;
-        }
-        .no-banner-placeholder {
-            color: #9ca3af;
-            font-size: 12px;
-            font-weight: 600;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        /* Support Buttons */
+        .slider-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; }
+        .slider-dots span.active { background: white; width: 18px; border-radius: 4px; }
+        .no-banner-placeholder { color: #9ca3af; font-size: 12px; font-weight: 600; text-align: center; padding: 40px 0; }
         .support-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -252,8 +197,6 @@
         }
         .support-btn:active { transform: scale(0.97); }
         .support-btn i { font-size: 18px; }
-
-        /* Section Titles */
         .section-title {
             text-align: center;
             font-size: 18px;
@@ -263,8 +206,6 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-
-        /* Game Grid */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -282,12 +223,7 @@
             border: 1px solid var(--border);
         }
         .game-card:active { transform: scale(0.96); }
-        .game-card img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            display: block;
-        }
+        .game-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
         .game-card p {
             font-size: 10px;
             font-weight: 700;
@@ -299,8 +235,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
-        /* Top 3 leaderboard */
         .leaderboard-section {
             margin: 8px 16px 24px;
             padding: 18px;
@@ -316,8 +250,7 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
-            right: 12px;
-            top: 8px;
+            right: 12px; top: 8px;
             font-size: 72px;
             color: rgba(255,255,255,0.07);
             pointer-events: none;
@@ -331,19 +264,10 @@
             gap: 10px;
             margin-bottom: 14px;
         }
-        .leaderboard-heading h3 {
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: .2px;
-        }
-        .leaderboard-heading p {
-            color: rgba(255,255,255,.72);
-            font-size: 10px;
-            margin-top: 2px;
-        }
+        .leaderboard-heading h3 { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
+        .leaderboard-heading p { color: rgba(255,255,255,.72); font-size: 10px; margin-top: 2px; }
         .leaderboard-heading .leaderboard-trophy {
-            width: 38px;
-            height: 38px;
+            width: 38px; height: 38px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -353,12 +277,7 @@
             font-size: 19px;
             flex-shrink: 0;
         }
-        .leaderboard-list {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            gap: 8px;
-        }
+        .leaderboard-list { position: relative; z-index: 1; display: grid; gap: 8px; }
         .leaderboard-player {
             display: flex;
             align-items: center;
@@ -374,8 +293,7 @@
             background: linear-gradient(90deg, rgba(250,204,21,.2), rgba(255,255,255,.12));
         }
         .leaderboard-rank {
-            width: 27px;
-            height: 27px;
+            width: 27px; height: 27px;
             border-radius: 9px;
             background: rgba(255,255,255,.14);
             display: flex;
@@ -389,8 +307,7 @@
         .leaderboard-player.rank-2 .leaderboard-rank { color: #e2e8f0; }
         .leaderboard-player.rank-3 .leaderboard-rank { color: #fdba74; }
         .leaderboard-avatar {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -411,29 +328,12 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .leaderboard-player-info span {
-            display: block;
-            color: rgba(255,255,255,.67);
-            font-size: 9px;
-            margin-top: 2px;
-        }
+        .leaderboard-player-info span { display: block; color: rgba(255,255,255,.67); font-size: 9px; margin-top: 2px; }
         .leaderboard-total { text-align: right; flex-shrink: 0; }
         .leaderboard-total strong { display: block; color: #fde68a; font-size: 12px; font-weight: 800; }
         .leaderboard-total span { display: block; color: rgba(255,255,255,.65); font-size: 9px; margin-top: 2px; }
-        .leaderboard-empty {
-            position: relative;
-            z-index: 1;
-            padding: 18px 8px;
-            text-align: center;
-            color: rgba(255,255,255,.75);
-            font-size: 11px;
-        }
-
-        /* Recent Orders */
-        .recent-orders {
-            padding: 0 16px;
-            margin-bottom: 24px;
-        }
+        .leaderboard-empty { position: relative; z-index: 1; padding: 18px 8px; text-align: center; color: rgba(255,255,255,.75); font-size: 11px; }
+        .recent-orders { padding: 0 16px; margin-bottom: 24px; }
         .order-card {
             background: white;
             border-radius: 12px;
@@ -445,14 +345,9 @@
             border: 1px solid var(--border);
             box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
-        .order-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .order-user { display: flex; align-items: center; gap: 10px; }
         .order-avatar {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             background: #e5e7eb;
             display: flex;
@@ -462,15 +357,8 @@
             color: var(--primary);
             font-size: 14px;
         }
-        .order-info h4 {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        .order-info p {
-            font-size: 10px;
-            color: var(--text-light);
-        }
+        .order-info h4 { font-size: 12px; font-weight: 700; color: var(--text-dark); }
+        .order-info p { font-size: 10px; color: var(--text-light); }
         .status-badge {
             font-size: 9px;
             font-weight: 700;
@@ -480,21 +368,11 @@
             align-items: center;
             gap: 4px;
         }
-        .status-done {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-        .status-pending {
-            background: #fef3c7;
-            color: #d97706;
-        }
-
-        /* Bottom Nav */
+        .status-done { background: #dcfce7; color: #16a34a; }
+        .status-pending { background: #fef3c7; color: #d97706; }
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             max-width: 480px;
             margin: 0 auto;
             background: white;
@@ -521,26 +399,20 @@
             padding: 4px 8px;
             position: relative;
         }
-        .nav-item i {
-            font-size: 20px;
-        }
-        .nav-item.active {
-            color: var(--primary);
-        }
+        .nav-item i { font-size: 20px; }
+        .nav-item.active { color: var(--primary); }
         .nav-item.active::after {
             content: '';
             position: absolute;
             top: -8px;
-            width: 20px;
-            height: 3px;
+            width: 20px; height: 3px;
             background: var(--primary);
             border-radius: 0 0 4px 4px;
         }
         .nav-item-center {
             background: var(--primary);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -549,11 +421,7 @@
             box-shadow: 0 4px 12px rgba(109, 40, 217, 0.4);
             border: 4px solid white;
         }
-        .nav-item-center i {
-            font-size: 22px;
-        }
-
-        /* Login Screen */
+        .nav-item-center i { font-size: 22px; }
         .auth-screen {
             position: fixed;
             inset: 0;
@@ -563,38 +431,12 @@
             padding: 20px;
             display: none;
         }
-        .auth-screen.active {
-            display: block;
-        }
-        .auth-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .auth-back {
-            font-size: 20px;
-            color: var(--text-dark);
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        .auth-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .auth-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-        .auth-subtitle {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 24px;
-        }
+        .auth-screen.active { display: block; }
+        .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .auth-back { font-size: 20px; color: var(--text-dark); background: none; border: none; cursor: pointer; }
+        .auth-logo { display: flex; align-items: center; gap: 8px; }
+        .auth-title { font-size: 28px; font-weight: 800; color: var(--secondary); margin-bottom: 8px; }
+        .auth-subtitle { font-size: 13px; color: var(--text-light); margin-bottom: 24px; }
         .auth-card {
             background: white;
             border-radius: 16px;
@@ -602,16 +444,8 @@
             border: 1px solid var(--border);
             box-shadow: 0 4px 16px rgba(0,0,0,0.04);
         }
-        .auth-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .auth-card p {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
+        .auth-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .auth-card p { font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
         .google-btn {
             width: 100%;
             display: flex;
@@ -638,22 +472,9 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-        .form-group {
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
         .form-input {
             width: 100%;
             padding: 12px 16px;
@@ -686,23 +507,9 @@
             gap: 8px;
         }
         .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
-        .auth-footer {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 12px;
-            color: var(--text-light);
-        }
-        .auth-footer a {
-            color: var(--primary);
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        /* Topup Section */
-        .topup-section {
-            display: none;
-            padding-bottom: 40px;
-        }
+        .auth-footer { text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-light); }
+        .auth-footer a { color: var(--primary); font-weight: 700; text-decoration: none; }
+        .topup-section { display: none; padding-bottom: 40px; }
         .topup-section.active { display: block; }
         .topup-header {
             background: white;
@@ -715,20 +522,9 @@
             top: 0;
             z-index: 40;
         }
-        .topup-header img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-        .topup-header-info h3 {
-            font-size: 14px;
-            font-weight: 700;
-        }
-        .topup-header-info p {
-            font-size: 11px;
-            color: var(--text-light);
-        }
+        .topup-header img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; }
+        .topup-header-info h3 { font-size: 14px; font-weight: 700; }
+        .topup-header-info p { font-size: 11px; color: var(--text-light); }
         .step-card {
             background: white;
             margin: 12px 16px;
@@ -737,15 +533,9 @@
             border: 1px solid var(--border);
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        .step-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
+        .step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
         .step-num {
-            width: 22px;
-            height: 22px;
+            width: 22px; height: 22px;
             background: var(--primary);
             color: white;
             border-radius: 6px;
@@ -755,16 +545,8 @@
             font-size: 11px;
             font-weight: 700;
         }
-        .step-header h3 {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
+        .step-header h3 { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .product-card {
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -781,22 +563,9 @@
             background: #f3e8ff;
             box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.2);
         }
-        .product-card .name {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        .product-card .price {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .payment-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
+        .product-card .name { font-size: 11px; font-weight: 600; color: var(--text-dark); }
+        .product-card .price { font-size: 13px; font-weight: 700; color: var(--primary); }
+        .payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
         .pay-option {
             border: 2px solid var(--border);
             border-radius: 10px;
@@ -806,14 +575,9 @@
             transition: 0.2s;
             background: #f9fafb;
         }
-        .pay-option.selected {
-            border-color: var(--primary);
-            background: #f3e8ff;
-        }
+        .pay-option.selected { border-color: var(--primary); background: #f3e8ff; }
         .pay-option i { font-size: 20px; color: var(--primary); margin-bottom: 4px; }
         .pay-option span { font-size: 11px; font-weight: 700; display: block; }
-
-        /* Copy button */
         .copy-btn {
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.3);
@@ -830,9 +594,6 @@
             margin-left: 8px;
         }
         .copy-btn:active { transform: scale(0.95); }
-        .copy-btn i { font-size: 12px; }
-
-        /* Footer */
         .app-footer {
             background: var(--secondary);
             color: white;
@@ -840,26 +601,11 @@
             margin-top: 20px;
             border-radius: 24px 24px 0 0;
         }
-        .app-footer h4 {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-        .app-footer p {
-            font-size: 11px;
-            color: #cbd5e1;
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+        .app-footer h4 { font-size: 16px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; }
+        .app-footer p { font-size: 11px; color: #cbd5e1; margin-bottom: 12px; line-height: 1.6; }
+        .social-icons { display: flex; gap: 12px; margin-bottom: 20px; }
         .social-icons a {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 10px;
             background: rgba(255,255,255,0.1);
             display: flex;
@@ -882,14 +628,7 @@
         .support-box i { font-size: 24px; }
         .support-box h5 { font-size: 13px; font-weight: 700; }
         .support-box p { font-size: 10px; margin: 0; }
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 11px;
-            color: #94a3b8;
-            margin-bottom: 16px;
-        }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; color: #94a3b8; margin-bottom: 16px; }
         .footer-links a { color: #94a3b8; text-decoration: none; }
         .footer-bottom {
             text-align: center;
@@ -917,55 +656,10 @@
         .developer-credit-label { color: #a5b4fc; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .developer-credit-name { font-size: 14px; font-weight: 800; }
         .developer-credit-action { color: #c4b5fd; font-size: 10px; font-weight: 700; white-space: nowrap; }
-
-        /* Loader */
-        .loader {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .loader i {
-            font-size: 24px;
-            color: var(--primary);
-            animation: spin 1s linear infinite;
-        }
+        .loader { display: flex; justify-content: center; padding: 20px; }
+        .loader i { font-size: 24px; color: var(--primary); animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
         .hidden { display: none !important; }
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-2 { gap: 8px; }
-        .gap-3 { gap: 12px; }
-        .mt-2 { margin-top: 8px; }
-        .mb-2 { margin-bottom: 8px; }
-        .w-full { width: 100%; }
-        .text-center { text-align: center; }
-        .text-sm { font-size: 13px; }
-        .text-xs { font-size: 11px; }
-        .font-bold { font-weight: 700; }
-        .text-slate-400 { color: #94a3b8; }
-        .text-slate-500 { color: #64748b; }
-        .text-slate-800 { color: #1e293b; }
-        .text-indigo-600 { color: #7c3aed; }
-        .bg-white { background: white; }
-        .bg-slate-50 { background: #f8fafc; }
-        .rounded-xl { border-radius: 12px; }
-        .rounded-2xl { border-radius: 16px; }
-        .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-        .p-3 { padding: 12px; }
-        .p-4 { padding: 16px; }
-        .px-4 { padding-left: 16px; padding-right: 16px; }
-        .py-2 { padding-top: 8px; padding-bottom: 8px; }
-        .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .break-all { word-break: break-all; }
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .inset-0 { inset: 0; }
-        .overflow-hidden { overflow: hidden; }
-        .object-cover { object-fit: cover; }
-        .cursor-pointer { cursor: pointer; }
-        .resize-none { resize: none; }
     </style>
 </head>
 <body>
@@ -996,15 +690,11 @@
         
         <!-- HOME SECTION -->
         <section id="home-sec">
-            <!-- Notice Bar -->
             <div class="notice-bar" id="notice-bar" style="display:none;">
                 <span class="badge">NOTICE</span>
-                <div class="notice-scroll" id="notice-text">
-                    <span>Loading...</span>
-                </div>
+                <div class="notice-scroll" id="notice-text"><span>Loading...</span></div>
             </div>
 
-            <!-- Banner Slider -->
             <div class="banner-container" id="banner-container">
                 <div class="slider-wrapper" id="slider-wrapper">
                     <div class="no-banner-placeholder">No banners available</div>
@@ -1012,7 +702,6 @@
                 <div class="slider-dots" id="slider-dots"></div>
             </div>
 
-            <!-- Support Buttons -->
             <div class="support-grid">
                 <a href="#" id="link-telegram" class="support-btn" target="_blank">
                     <i class="fab fa-telegram-plane"></i>
@@ -1030,13 +719,11 @@
                 </a>
             </div>
 
-            <!-- Regular Game Topup -->
             <h2 class="section-title" id="regular-topup-title"></h2>
             <div class="game-grid" id="services-list">
                 <div class="loader" style="grid-column: span 3;"><i class="fas fa-spinner"></i></div>
             </div>
 
-            <!-- Top 3 Leaderboard -->
             <section class="leaderboard-section" id="leaderboard-section" aria-labelledby="leaderboard-title">
                 <div class="leaderboard-heading">
                     <div>
@@ -1050,7 +737,6 @@
                 </div>
             </section>
 
-            <!-- Recent Orders -->
             <div class="recent-orders" id="recent-orders-container" style="display:none;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                     <h3 style="font-size:15px;font-weight:800;color:var(--secondary);">Recent Orders</h3>
@@ -1058,19 +744,16 @@
                         <span style="width:8px;height:8px;background:var(--success);border-radius:50%;display:inline-block;"></span> Live
                     </div>
                 </div>
-                <div id="latest-orders-list">
-                    <!-- Populated by JS -->
-                </div>
+                <div id="latest-orders-list"></div>
             </div>
 
-            <!-- No Data Message -->
             <div id="home-no-data" style="text-align:center;padding:40px 16px;color:var(--text-light);display:none;">
                 <i class="fas fa-gamepad" style="font-size:40px;margin-bottom:12px;display:block;opacity:0.3;"></i>
                 <p style="font-size:13px;">No games available yet. Please check back later.</p>
             </div>
         </section>
 
-        <!-- TOPUP SECTION -->
+        <!-- TOPUP / SUBSCRIPTION SECTION -->
         <section id="topup-sec" class="topup-section">
             <div class="topup-header">
                 <button onclick="showSec('home')" style="background:none;border:none;font-size:18px;color:var(--text-dark);"><i class="fas fa-arrow-left"></i></button>
@@ -1085,13 +768,13 @@
             <div class="step-card">
                 <div class="step-header">
                     <div class="step-num">1</div>
-                    <h3>Select Recharge</h3>
+                    <h3>Select Package</h3>
                 </div>
                 <div id="product-loader" class="loader hidden"><i class="fas fa-spinner"></i></div>
                 <div class="product-grid" id="products-grid"></div>
             </div>
 
-            <!-- Step 2: Account Info -->
+            <!-- Step 2: Account Info (Auto switches between Player ID and Gmail) -->
             <div class="step-card" id="player-id-section">
                 <div class="step-header">
                     <div class="step-num">2</div>
@@ -1148,7 +831,6 @@
                 <h3 style="font-size:16px;font-weight:700;">Add Money</h3>
             </div>
 
-            <!-- Step 1: Amount -->
             <div id="am-step-1">
                 <div class="step-card" style="text-align:center;padding:32px 16px;">
                     <label style="font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;">Enter Amount</label>
@@ -1159,7 +841,6 @@
                     <button onclick="goToMethodStep()" class="btn-primary">PROCEED TO PAYMENT</button>
                 </div>
                 
-                <!-- ইউটিউব ভিডিও সেকশন -->
                 <div class="step-card" id="tutorial-video-box">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                         <i class="fab fa-youtube" style="color:#dc2626;"></i>
@@ -1171,7 +852,6 @@
                 </div>
             </div>
 
-            <!-- Step 2: Method -->
             <div id="am-step-2" style="display:none;">
                 <div class="step-card" style="text-align:center;padding:24px 16px;">
                     <h3 style="font-size:16px;font-weight:700;margin-bottom:4px;">Auto Pay</h3>
@@ -1194,7 +874,6 @@
                 </div>
             </div>
 
-            <!-- Step 3: Payment Page -->
             <div id="am-step-3" style="display:none;">
                 <div class="step-card" style="text-align:center;padding:20px;">
                     <img id="pay-method-logo" src="" style="height:40px;margin:0 auto 8px;">
@@ -1273,7 +952,6 @@
                 </div>
             </div>
             
-            <!-- Referral Link Box -->
             <div style="padding:0 16px; margin-bottom: 12px;">
                 <div style="background:white;border-radius:12px;padding:16px;border:1px solid var(--border);">
                     <p style="font-size:12px;font-weight:700;margin-bottom:6px;"><i class="fas fa-share-alt" style="color:var(--primary);margin-right:5px;"></i> আপনার রেফারেল লিংক</p>
@@ -1322,7 +1000,7 @@
             <a href="#">Delete Account Policy</a>
         </div>
         <div class="footer-bottom" id="footer-credit">© 2026 Ridoy | All Rights Reserved</div>
-        <a class="developer-credit-link" id="developer-credit-link" href="https://t.me/+RNskvby_DOUzNjA9" target="_blank" rel="noopener noreferrer" aria-label="Contact Ridoy, developer, on Telegram">
+        <a class="developer-credit-link" id="developer-credit-link" href="https://t.me/+RNskvby_DOUzNjA9" target="_blank" rel="noopener noreferrer">
             <span class="developer-credit-info">
                 <span class="developer-credit-label">Developer Credit</span>
                 <strong class="developer-credit-name">Ridoy</strong>
@@ -1357,7 +1035,7 @@
 
 </div>
 
-<!-- AUTH SCREEN (LOGIN/REGISTER) -->
+<!-- AUTH SCREEN -->
 <div class="auth-screen" id="auth-sec">
     <div class="auth-header">
         <button class="auth-back" onclick="closeAuth()"><i class="fas fa-arrow-left"></i></button>
@@ -1368,7 +1046,6 @@
         <div style="width:20px;"></div>
     </div>
 
-    <!-- Login View -->
     <div id="login-view">
         <h2 class="auth-title">Welcome Back</h2>
         <p class="auth-subtitle">Fast, secure and simple access to your Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ account.</p>
@@ -1394,7 +1071,6 @@
             <div style="text-align: right; margin-bottom: 12px;">
                 <a href="#" onclick="handleForgotPassword(event)" style="font-size: 13px; color: var(--primary); text-decoration: none;">Forgot password?</a>
             </div>
-
             <button class="btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
             <div class="auth-footer">
                 New user to Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ? <a href="#" onclick="toggleAuth('register')">Create an account</a>
@@ -1402,7 +1078,6 @@
         </div>
     </div>
 
-    <!-- Register View -->
     <div id="register-view" style="display:none;">
         <h2 class="auth-title">Create your account</h2>
         <p class="auth-subtitle">Register once and enjoy faster orders, secure wallet access.</p>
@@ -1433,7 +1108,6 @@
                 <label>Password</label>
                 <input type="password" id="reg-pass" class="form-input" placeholder="Create password">
             </div>
-            <!-- Optional Referral Code Input -->
             <div class="form-group">
                 <label>Referral Code (Optional)</label>
                 <input type="text" id="reg-ref-code" class="form-input" placeholder="Enter referral code if you have">
@@ -1447,9 +1121,6 @@
 </div>
 
 <script>
-    // ============================================================
-    // FIREBASE CONFIG
-    // ============================================================
     const firebaseConfig = {
       apiKey: "AIzaSyA7sXxdhRR2BROMYS9PXgzm38lGURBdCGw",
       authDomain: "quick-diamond-2af30.firebaseapp.com",
@@ -1464,19 +1135,10 @@
     const auth = firebase.auth();
     const rtdb = firebase.database();
 
-    // ============================================================
-    // DEFAULT BRANDING
-    // ============================================================
     const DEFAULT_SITE_NAME = "Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ";
-    const DEVELOPER_NAME = "Ridoy";
     const DEVELOPER_TELEGRAM = "https://t.me/+RNskvby_DOUzNjA9";
-
-    function getDevName() { return DEVELOPER_NAME; }
     function getBrandName() { return DEFAULT_SITE_NAME; }
 
-    // ============================================================
-    // STATE
-    // ============================================================
     let currentUser = null;
     let userBalance = 0;
     let selectedProduct = null;
@@ -1484,6 +1146,7 @@
     let selectedGameName = "";
     let selectedGameType = 'uid';
     let gamesData = {};
+    let categoriesData = {};
     let isAutoPayEnabled = true;
     let selectedPaymentMethod = 'wallet';
     let isDirectBuy = false;
@@ -1492,17 +1155,12 @@
     let currentPaymentMethod = '';
     let storedRefCode = '';
 
-    // ============================================================
-    // REAL-TIME AUTO NOTIFICATION SYSTEM (অটো নোটিফিকেশন সিস্টেম)
-    // ============================================================
     function listenToLiveNotifications() {
         db.collection('settings').doc('notification').onSnapshot((doc) => {
             if (doc.exists) {
                 const notifData = doc.data();
-                // চেক করবে নোটিফিকেশন একটিভ আছে কিনা এবং টাইটেল/মেসেজ আছে কিনা
                 if (notifData.active === true && notifData.title && notifData.message) {
                     const lastSeenMessage = localStorage.getItem('last_broadcast_notif');
-                    // যদি নতুন মেসেজ হয় বা অ্যাডমিন চেঞ্জ করে থাকে, তবেই পপআপ দেখাবে
                     if (lastSeenMessage !== notifData.message) {
                         Swal.fire({
                             title: notifData.title,
@@ -1519,37 +1177,25 @@
         });
     }
 
-    // ============================================================
-    // HEADER AVATAR CLICK HANDLER (FIXED)
-    // ============================================================
     function handleHeaderAvatarClick() {
-        if (currentUser) {
-            showSec('account');
-        } else {
-            showAuthPage();
-        }
+        if (currentUser) showSec('account');
+        else showAuthPage();
     }
 
-    // ============================================================
-    // NAVIGATION
-    // ============================================================
     function showSec(secId) {
         if ((secId === 'history' || secId === 'account' || secId === 'addmoney') && !currentUser) {
             showAuthPage();
             return;
         }
-
         document.querySelectorAll('main > section').forEach(s => {
             s.style.display = 'none';
             s.classList.remove('active');
         });
-        
         const target = document.getElementById(secId + '-sec');
         if (target) {
             target.style.display = 'block';
             target.classList.add('active');
         }
-
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         const navBtn = document.getElementById('nav-' + secId);
         if (navBtn) navBtn.classList.add('active');
@@ -1560,9 +1206,7 @@
             document.getElementById('am-step-3').style.display = 'none';
             isDirectBuy = false;
         }
-        if (secId === 'history') {
-            loadHistory();
-        }
+        if (secId === 'history') loadHistory();
         if (secId === 'account' && currentUser) {
             loadUserData(currentUser.uid);
             calculateUserStats(currentUser.uid);
@@ -1572,13 +1216,9 @@
         document.getElementById('main-content').style.display = 'block';
         document.querySelector('.app-footer').style.display = 'block';
         document.querySelector('.bottom-nav').style.display = 'flex';
-
         window.scrollTo(0, 0);
     }
 
-    // ============================================================
-    // AUTH
-    // ============================================================
     function showAuthPage() {
         document.getElementById('auth-sec').classList.add('active');
         document.getElementById('main-content').style.display = 'none';
@@ -1618,7 +1258,6 @@
         if (pass.length < 6) return Swal.fire('Error', 'Password must be at least 6 characters', 'error');
         
         Swal.fire({ title: 'Creating account...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        
         auth.createUserWithEmailAndPassword(email, pass)
             .then((cred) => {
                 return db.collection('users').doc(cred.user.uid).set({
@@ -1636,13 +1275,7 @@
                 closeAuth();
                 showSec('home');
             })
-            .catch((err) => {
-                let msg = err.message;
-                if (err.code === 'auth/email-already-in-use') msg = 'This email is already registered.';
-                if (err.code === 'auth/invalid-email') msg = 'Invalid email address.';
-                if (err.code === 'auth/weak-password') msg = 'Password too weak (min 6 chars).';
-                Swal.fire('Registration Failed', msg, 'error');
-            });
+            .catch((err) => Swal.fire('Registration Failed', err.message, 'error'));
     }
 
     function handleLogin() {
@@ -1651,7 +1284,6 @@
         if (!email || !pass) return Swal.fire('Error', 'Please enter email and password', 'warning');
         
         Swal.fire({ title: 'Logging in...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        
         auth.signInWithEmailAndPassword(email, pass)
             .then(() => {
                 Swal.close();
@@ -1659,12 +1291,7 @@
                 showSec('home');
                 Swal.fire({ toast: true, icon: 'success', title: 'Welcome back!', position: 'top', showConfirmButton: false, timer: 1500 });
             })
-            .catch((err) => {
-                let msg = 'Invalid email or password.';
-                if (err.code === 'auth/user-not-found') msg = 'No account found with this email.';
-                if (err.code === 'auth/wrong-password') msg = 'Incorrect password.';
-                Swal.fire('Login Failed', msg, 'error');
-            });
+            .catch(() => Swal.fire('Login Failed', 'Invalid email or password.', 'error'));
     }
 
     function handleGoogleLogin() {
@@ -1692,17 +1319,8 @@
             });
             closeAuth();
             showSec('home');
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Logged in successfully',
-                showConfirmButton: false,
-                timer: 1500
-            });
         }
-    }).catch((error) => {
-        Swal.fire('Error', error.message, 'error');
-    });
+    }).catch((error) => Swal.fire('Error', error.message, 'error'));
 
     function handleLogout() {
         auth.signOut().then(() => {
@@ -1733,17 +1351,13 @@
                 const data = doc.data();
                 userBalance = data.balance || 0;
                 const userName = data.name || "User";
-                const userEmail = data.email || "";
-                const userPhone = data.phone || "N/A";
-                const userPhoto = data.photoURL || "";
-
                 document.getElementById('header-balance').innerText = userBalance;
                 document.getElementById('topup-balance-display').innerText = userBalance.toFixed(2);
 
                 const imgEl = document.getElementById('acc-profile-img');
                 const initialEl = document.getElementById('profile-initial');
-                if (userPhoto) {
-                    imgEl.src = userPhoto;
+                if (data.photoURL) {
+                    imgEl.src = data.photoURL;
                     imgEl.style.display = 'block';
                     initialEl.style.display = 'none';
                 } else {
@@ -1753,27 +1367,22 @@
                 }
 
                 document.getElementById('acc-profile-name').innerText = userName;
-                document.getElementById('acc-email').innerText = userEmail;
-                document.getElementById('acc-phone').innerText = userPhone;
+                document.getElementById('acc-email').innerText = data.email || "";
+                document.getElementById('acc-phone').innerText = data.phone || "N/A";
                 document.getElementById('acc-profile-balance').innerText = userBalance;
                 const supportPin = uid.substring(0, 6).toUpperCase();
                 document.getElementById('acc-support-pin').innerText = supportPin;
 
                 const refInput = document.getElementById('ref-link-input');
-                if (refInput) {
-                    refInput.value = `${window.location.origin}${window.location.pathname}?ref=${supportPin}`;
-                }
+                if (refInput) refInput.value = `${window.location.origin}${window.location.pathname}?ref=${supportPin}`;
             }
         });
     }
 
     function copyReferralLink() {
         const refInput = document.getElementById('ref-link-input');
-        if (!refInput || refInput.value.includes("লগইন")) {
-            return Swal.fire('Error', 'দয়া করে আগে লগইন করুন।', 'warning');
-        }
+        if (!refInput || refInput.value.includes("লগইন")) return Swal.fire('Error', 'দয়া করে আগে লগইন করুন।', 'warning');
         refInput.select();
-        refInput.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(refInput.value).then(() => {
             Swal.fire({ toast: true, icon: 'success', title: 'রেফারেল লিংক কপি হয়েছে!', position: 'top', showConfirmButton: false, timer: 1500 });
         });
@@ -1781,17 +1390,13 @@
 
     function calculateUserStats(uid) {
         db.collection('orders').where('userId', '==', uid).get().then((snapshot) => {
-            let totalOrders = 0;
-            let totalSpent = 0;
-            let weeklySpent = 0;
-            const now = new Date();
-            const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-
+            let totalOrders = 0, totalSpent = 0, weeklySpent = 0;
+            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
             snapshot.forEach((doc) => {
                 const data = doc.data();
                 totalOrders++;
-                const status = data.status ? data.status.toLowerCase() : '';
-                if (status === 'success' || status === 'complete' || status === 'completed' || status === 'pending') {
+                const status = (data.status || '').toLowerCase();
+                if (['success', 'complete', 'completed', 'pending'].includes(status)) {
                     const price = parseInt(data.price || 0);
                     totalSpent += price;
                     if (data.date) {
@@ -1800,18 +1405,14 @@
                     }
                 }
             });
-
             document.getElementById('acc-total-orders').innerText = totalOrders;
             document.getElementById('acc-total-spent').innerText = totalSpent;
             document.getElementById('acc-weekly-spent').innerText = weeklySpent;
         });
     }
 
-    // ============================================================
     // SLIDER
-    // ============================================================
-    let sliderIdx = 0;
-    let sliderInterval;
+    let sliderIdx = 0, sliderInterval;
     const sliderWrapper = document.getElementById('slider-wrapper');
     const sliderDots = document.getElementById('slider-dots');
 
@@ -1821,7 +1422,6 @@
             if (sliderInterval) clearInterval(sliderInterval);
             return;
         }
-        
         sliderDots.innerHTML = '';
         slides.forEach((_, i) => {
             const dot = document.createElement('span');
@@ -1829,7 +1429,6 @@
             dot.onclick = () => goToSlide(i);
             sliderDots.appendChild(dot);
         });
-
         if (sliderInterval) clearInterval(sliderInterval);
         sliderInterval = setInterval(() => {
             sliderIdx = (sliderIdx + 1) % slides.length;
@@ -1840,51 +1439,36 @@
     function goToSlide(idx) {
         sliderIdx = idx;
         sliderWrapper.style.transform = `translateX(-${idx * 100}%)`;
-        document.querySelectorAll('#slider-dots span').forEach((dot, i) => {
-            dot.classList.toggle('active', i === idx);
-        });
+        document.querySelectorAll('#slider-dots span').forEach((dot, i) => dot.classList.toggle('active', i === idx));
     }
 
-    // ============================================================
-    // LOAD DATA
-    // ============================================================
+    // GLOBAL SETTINGS & GAMES
     function loadGlobalSettings() {
         db.collection("settings").doc("general").onSnapshot((doc) => {
             if (doc.exists) {
                 const data = doc.data();
                 isAutoPayEnabled = data.autoPayEnabled === true;
-                
                 if (data.notice && data.notice.trim()) {
                     document.getElementById('notice-bar').style.display = 'flex';
                     document.getElementById('notice-text').innerHTML = `<span>${data.notice}</span>`;
                 } else {
                     document.getElementById('notice-bar').style.display = 'none';
                 }
-
                 const brandName = (data.siteName || getBrandName()).trim() || getBrandName();
                 document.title = brandName + " | Free Fire Diamond";
-                const headerBrand = document.getElementById('site-brand-name');
-                const authBrand = document.getElementById('auth-site-brand-name');
-                if (headerBrand) headerBrand.textContent = brandName;
-                if (authBrand) authBrand.textContent = brandName;
+                document.getElementById('site-brand-name').textContent = brandName;
+                document.getElementById('auth-site-brand-name').textContent = brandName;
 
                 const waNum = data.whatsapp ? String(data.whatsapp).replace(/\s/g, '') : "0";
-                const tgLink = data.telegram || "#";
-                const fbLink = data.facebook || "#";
-                const ytLink = data.youtube || "#";
-                const waLink = `https://wa.me/${waNum}`;
-
-                document.getElementById('link-whatsapp').href = waLink;
-                document.getElementById('link-telegram').href = tgLink;
-                document.getElementById('footer-fb').href = fbLink;
-                document.getElementById('footer-tg').href = tgLink;
-                document.getElementById('footer-yt').href = ytLink;
+                document.getElementById('link-whatsapp').href = `https://wa.me/${waNum}`;
+                document.getElementById('link-telegram').href = data.telegram || "#";
+                document.getElementById('footer-fb').href = data.facebook || "#";
+                document.getElementById('footer-tg').href = data.telegram || "#";
+                document.getElementById('footer-yt').href = data.youtube || "#";
                 document.getElementById('footer-mail').href = `mailto:${data.email || ''}`;
             }
-            
             const activeBrand = (doc.exists && doc.data().siteName ? doc.data().siteName.trim() : getBrandName()) || getBrandName();
-            document.getElementById('footer-credit').textContent =
-                `© ${new Date().getFullYear()} ${activeBrand} | All Rights Reserved`;
+            document.getElementById('footer-credit').textContent = `© ${new Date().getFullYear()} ${activeBrand} | All Rights Reserved`;
             document.getElementById('developer-credit-link').href = DEVELOPER_TELEGRAM;
         });
     }
@@ -1897,26 +1481,24 @@
         db.collection("categories").orderBy("slot").onSnapshot(async (categoriesSnap) => {
             listContainer.innerHTML = '';
             gamesData = {};
+            categoriesData = {};
 
             const servicesSnap = await db.collection("services").get();
-
             if (servicesSnap.empty) {
-                listContainer.innerHTML = '';
                 noDataEl.style.display = 'block';
                 titleEl.style.display = 'none';
                 return;
             }
-
             noDataEl.style.display = 'none';
             titleEl.style.display = 'block';
 
             const categoriesMap = new Map();
             categoriesSnap.forEach(doc => {
+                categoriesData[doc.id] = doc.data();
                 categoriesMap.set(doc.id, { ...doc.data(), games: [] });
             });
 
             let uncategorizedGames = [];
-
             servicesSnap.forEach(doc => {
                 const game = { id: doc.id, ...doc.data() };
                 gamesData[doc.id] = game;
@@ -1927,21 +1509,19 @@
                 }
             });
 
-            document.querySelectorAll('.dynamic-cat-title').forEach(el => el.remove());
+            document.querySelectorAll('.dynamic-cat-title, .dynamic-cat-grid').forEach(el => el.remove());
 
             let hasGames = false;
-            let insertBeforeEl = listContainer;
-
             categoriesMap.forEach((category) => {
                 if (category.games.length > 0) {
                     hasGames = true;
                     const catTitle = document.createElement('h2');
                     catTitle.className = 'section-title dynamic-cat-title';
                     catTitle.textContent = category.name;
-                    insertBeforeEl.parentNode.insertBefore(catTitle, insertBeforeEl);
+                    listContainer.parentNode.insertBefore(catTitle, listContainer);
                     
                     const catGrid = document.createElement('div');
-                    catGrid.className = 'game-grid';
+                    catGrid.className = 'game-grid dynamic-cat-grid';
                     category.games.forEach(item => {
                         catGrid.innerHTML += `
                             <div class="game-card" onclick="openTopUpPage('${item.id}', '${item.name.replace(/'/g, "\\'")}', '${item.image}')">
@@ -1949,7 +1529,7 @@
                                 <p>${item.name}</p>
                             </div>`;
                     });
-                    insertBeforeEl.parentNode.insertBefore(catGrid, insertBeforeEl);
+                    listContainer.parentNode.insertBefore(catGrid, listContainer);
                 }
             });
 
@@ -1975,41 +1555,30 @@
         db.collection("banners").onSnapshot((snapshot) => {
             const wrapper = document.getElementById('slider-wrapper');
             const dots = document.getElementById('slider-dots');
-            
             if (wrapper) wrapper.innerHTML = '';
             if (dots) dots.innerHTML = '';
-
             if (snapshot.empty) {
                 if (wrapper) wrapper.innerHTML = '<div class="no-banner-placeholder">No banners available</div>';
                 return;
             }
-
             let slidesHTML = '';
             snapshot.forEach((doc) => {
-                if (doc.data().image) {
-                    slidesHTML += `<img src="${doc.data().image}" alt="Banner">`;
-                }
+                if (doc.data().image) slidesHTML += `<img src="${doc.data().image}" alt="Banner">`;
             });
-
             if (slidesHTML && wrapper) {
                 wrapper.innerHTML = slidesHTML;
-                if (typeof initSlider === 'function') {
-                    initSlider();
-                }
+                initSlider();
             }
         });
     }
 
     function escapeLeaderboardText(value) {
-        return String(value ?? '').replace(/[&<>"']/g, ch => ({
-            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-        })[ch]);
+        return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
     }
 
     function loadLeaderboard() {
         const list = document.getElementById('leaderboard-list');
         if (!list) return;
-
         db.collection('orders').where('status', '==', 'success').onSnapshot(async snapshot => {
             const totals = new Map();
             snapshot.forEach(orderDoc => {
@@ -2022,16 +1591,11 @@
                 current.orders += 1;
                 totals.set(order.userId, current);
             });
-
-            const leaders = Array.from(totals.values())
-                .sort((x, y) => y.total - x.total || y.orders - x.orders)
-                .slice(0, 3);
-
+            const leaders = Array.from(totals.values()).sort((x, y) => y.total - x.total || y.orders - x.orders).slice(0, 3);
             if (!leaders.length) {
                 list.innerHTML = '<div class="leaderboard-empty"><i class="fas fa-medal" style="font-size:20px;display:block;margin-bottom:7px;color:#facc15;"></i>এখনো কোনো সফল টপ-আপ নেই। প্রথম লিডার হওয়ার সুযোগ আপনার!</div>';
                 return;
             }
-
             const profiles = await Promise.all(leaders.map(async leader => {
                 try {
                     const userDoc = await db.collection('users').doc(leader.userId).get();
@@ -2041,7 +1605,6 @@
                     return { ...leader, name: `Player #${leader.userId.slice(0, 4)}` };
                 }
             }));
-
             list.innerHTML = profiles.map((player, index) => {
                 const rank = index + 1;
                 const name = escapeLeaderboardText(player.name);
@@ -2068,54 +1631,57 @@
     function loadRecentOrdersGlobal() {
         const container = document.getElementById('latest-orders-list');
         const containerWrapper = document.getElementById('recent-orders-container');
-        
-        db.collection('orders').orderBy('date', 'desc').limit(10)
-            .onSnapshot((snapshot) => {
-                if (snapshot.empty) {
-                    containerWrapper.style.display = 'none';
-                    return;
-                }
-                containerWrapper.style.display = 'block';
-                container.innerHTML = "";
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    let displayName = "Customer";
-                    if (data.userName) {
-                        displayName = data.userName.includes('@') ? data.userName.split('@')[0] : data.userName;
-                    }
-                    const firstChar = displayName.charAt(0).toUpperCase();
-                    let statusText = (data.status || 'pending').toLowerCase();
-                    let statusClass = 'status-done';
-                    let statusLabel = 'Done';
-                    
-                    if (['success', 'complete', 'completed'].includes(statusText)) {
-                        statusClass = 'status-done';
-                        statusLabel = 'Done';
-                    } else {
-                        statusClass = 'status-pending';
-                        statusLabel = 'Pending';
-                    }
+        db.collection('orders').orderBy('date', 'desc').limit(10).onSnapshot((snapshot) => {
+            if (snapshot.empty) {
+                containerWrapper.style.display = 'none';
+                return;
+            }
+            containerWrapper.style.display = 'block';
+            container.innerHTML = "";
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                let displayName = data.userName ? (data.userName.includes('@') ? data.userName.split('@')[0] : data.userName) : "Customer";
+                const firstChar = displayName.charAt(0).toUpperCase();
+                let statusText = (data.status || 'pending').toLowerCase();
+                let statusClass = ['success', 'complete', 'completed'].includes(statusText) ? 'status-done' : 'status-pending';
+                let statusLabel = statusClass === 'status-done' ? 'Done' : 'Pending';
 
-                    container.innerHTML += `
-                        <div class="order-card">
-                            <div class="order-user">
-                                <div class="order-avatar">${firstChar}</div>
-                                <div class="order-info">
-                                    <h4>${displayName}</h4>
-                                    <p>${data.productName || 'Product'} - ৳${data.price}</p>
-                                </div>
+                container.innerHTML += `
+                    <div class="order-card">
+                        <div class="order-user">
+                            <div class="order-avatar">${firstChar}</div>
+                            <div class="order-info">
+                                <h4>${displayName}</h4>
+                                <p>${data.productName || 'Product'} - ৳${data.price}</p>
                             </div>
-                            <div class="status-badge ${statusClass}"><i class="fas fa-check-circle"></i> ${statusLabel}</div>
-                        </div>`;
-                });
+                        </div>
+                        <div class="status-badge ${statusClass}"><i class="fas fa-check-circle"></i> ${statusLabel}</div>
+                    </div>`;
             });
+        });
+    }
+
+    // ============================================================
+    // OPEN TOPUP OR SUBSCRIPTION PAGE (DYNAMIC FIELD SWITCHING)
+    // ============================================================
+    function isSubscriptionService(gameId, gameName) {
+        const game = gamesData[gameId] || {};
+        if (game.type === 'subscription') return true;
+        
+        const catName = (game.categoryId && categoriesData[game.categoryId]) ? categoriesData[game.categoryId].name.toLowerCase() : '';
+        const lowerName = (gameName || '').toLowerCase();
+        const keywords = ['subscription', 'সাবস্ক্রিপশন', 'capcut', 'youtube', 'netflix', 'gemini', 'prime', 'spotify', 'canva', 'chatgpt', 'বিনোদন'];
+        
+        return keywords.some(kw => lowerName.includes(kw) || catName.includes(kw));
     }
 
     function openTopUpPage(gameId, gameName, gameImg) {
         selectedGameId = gameId;
         selectedGameName = gameName;
         selectedProduct = null;
-        selectedGameType = gamesData[gameId]?.type || 'uid';
+        
+        const isSub = isSubscriptionService(gameId, gameName);
+        selectedGameType = isSub ? 'subscription' : (gamesData[gameId]?.type || 'uid');
 
         selectPaymentOption('wallet');
         isDirectBuy = false;
@@ -2132,20 +1698,18 @@
         if (selectedGameType === 'code') {
             playerSection.style.display = 'none';
             document.getElementById('topup-sub-title').innerText = gameName + " (Instant Voucher)";
+        } else if (selectedGameType === 'subscription') {
+            playerSection.style.display = 'block';
+            accountLabel.innerText = 'Gmail Address';
+            playerInput.type = 'email';
+            playerInput.placeholder = 'আপনার জিমেইল অ্যাড্রেস লিখুন (example@gmail.com)';
+            document.getElementById('topup-sub-title').innerText = gameName + " (Gmail Subscription)";
         } else {
             playerSection.style.display = 'block';
-            const lowerName = gameName.toLowerCase();
-            if (lowerName.includes('capcut') || lowerName.includes('youtube') || lowerName.includes('netflix')) {
-                accountLabel.innerText = 'Account Email Address';
-                playerInput.type = 'email';
-                playerInput.placeholder = 'আপনার জিমেইল অ্যাড্রেস লিখুন';
-                document.getElementById('topup-sub-title').innerText = gameName + " (Account Email)";
-            } else {
-                accountLabel.innerText = 'Player ID';
-                playerInput.type = 'text';
-                playerInput.placeholder = 'Enter Player ID';
-                document.getElementById('topup-sub-title').innerText = gameName + " (Player ID)";
-            }
+            accountLabel.innerText = 'Player ID';
+            playerInput.type = 'text';
+            playerInput.placeholder = 'Enter Player ID';
+            document.getElementById('topup-sub-title').innerText = gameName + " (Player ID)";
         }
 
         const rulesBox = document.getElementById('game-rules-box');
@@ -2211,18 +1775,24 @@
             return;
         }
 
-        let playerId = "N/A";
-        if (selectedGameType === 'uid' || selectedGameType === 'auto-topup') {
-            playerId = document.getElementById('game-player-id').value.trim();
-            if (!playerId) return Swal.fire({ icon: 'warning', title: 'Missing Info', text: 'Please enter required information!' });
+        let accountInfo = "N/A";
+        if (selectedGameType !== 'code') {
+            accountInfo = document.getElementById('game-player-id').value.trim();
+            if (!accountInfo) {
+                const msg = selectedGameType === 'subscription' ? 'দয়া করে আপনার জিমেইল অ্যাড্রেস লিখুন!' : 'Please enter your Player ID!';
+                return Swal.fire({ icon: 'warning', title: 'Missing Info', text: msg });
+            }
+            if (selectedGameType === 'subscription' && !accountInfo.includes('@')) {
+                return Swal.fire({ icon: 'warning', title: 'Invalid Gmail', text: 'দয়া করে একটি সঠিক Gmail অ্যাড্রেস দিন!' });
+            }
         }
 
-        if (!selectedProduct) return Swal.fire({ icon: 'warning', title: 'Select Pack', text: 'Please select a recharge package!' });
+        if (!selectedProduct) return Swal.fire({ icon: 'warning', title: 'Select Pack', text: 'Please select a package!' });
 
         if (selectedPaymentMethod === 'instant') {
             isDirectBuy = true;
             currentDepositAmount = selectedProduct.price;
-            pendingDirectOrder = { playerId, product: selectedProduct, gameId: selectedGameId, gameName: selectedGameName, gameType: selectedGameType };
+            pendingDirectOrder = { playerId: accountInfo, product: selectedProduct, gameId: selectedGameId, gameName: selectedGameName, gameType: selectedGameType };
             showSec('addmoney');
             document.getElementById('am-step-1').style.display = 'none';
             document.getElementById('am-step-2').style.display = 'block';
@@ -2232,9 +1802,10 @@
 
         if (userBalance < selectedProduct.price) return Swal.fire({ icon: 'error', title: 'Low Balance', text: 'Please Add Money first.' });
 
+        const infoLabel = selectedGameType === 'subscription' ? 'Gmail' : 'Player ID';
         Swal.fire({
             title: 'Confirm Purchase?',
-            html: `Item: ${selectedProduct.name}<br>Price: ৳${selectedProduct.price}`,
+            html: `Item: ${selectedProduct.name}<br>${infoLabel}: <b>${accountInfo}</b><br>Price: ৳${selectedProduct.price}`,
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#6d28d9',
@@ -2242,8 +1813,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.showLoading();
-                if (selectedGameType === 'code') processVoucherOrder(playerId);
-                else processUidOrder(playerId);
+                if (selectedGameType === 'code') processVoucherOrder(accountInfo);
+                else processUidOrder(accountInfo, selectedGameType);
             }
         });
     }
@@ -2251,10 +1822,7 @@
     async function processVoucherOrder(playerId) {
         const stockRef = db.collection('services').doc(selectedGameId).collection('products').doc(selectedProduct.id).collection('stock');
         const availableStockSnap = await stockRef.where('status', '==', 'available').limit(1).get();
-
-        if (availableStockSnap.empty) {
-            return Swal.fire('Out of Stock', 'Sorry, this product is currently unavailable.', 'error');
-        }
+        if (availableStockSnap.empty) return Swal.fire('Out of Stock', 'Sorry, this product is currently unavailable.', 'error');
 
         const stockDoc = availableStockSnap.docs[0];
         const voucherCode = stockDoc.data().code;
@@ -2268,10 +1836,10 @@
                 t.update(userRef, { balance: newBal });
                 t.delete(stockDoc.ref);
             });
-
             await db.collection('orders').add({
                 userId: currentUser.uid,
                 userName: currentUser.email,
+                userEmail: currentUser.email,
                 gameName: selectedGameName,
                 gameId: selectedGameId,
                 productName: selectedProduct.name,
@@ -2282,7 +1850,6 @@
                 redeemCode: voucherCode,
                 date: new Date()
             });
-
             Swal.fire('Success', 'Voucher Purchased! Check History for Code.', 'success');
             showSec('home');
         } catch (e) {
@@ -2290,19 +1857,20 @@
         }
     }
 
-    function processUidOrder(playerId) {
+    function processUidOrder(accountInfo, orderType = 'uid') {
         const newBalance = userBalance - selectedProduct.price;
         db.collection('users').doc(currentUser.uid).update({ balance: newBalance })
             .then(() => {
                 return db.collection('orders').add({
                     userId: currentUser.uid,
                     userName: currentUser.email,
+                    userEmail: currentUser.email,
                     gameName: selectedGameName,
                     gameId: selectedGameId,
-                    playerId: playerId,
+                    playerId: accountInfo,
                     productName: selectedProduct.name,
                     price: selectedProduct.price,
-                    type: 'uid',
+                    type: orderType,
                     status: 'pending',
                     date: new Date()
                 });
@@ -2314,11 +1882,10 @@
             .catch(err => Swal.fire('Error', err.message, 'error'));
     }
 
+    // ADD MONEY
     function goToMethodStep() {
         const inputVal = document.getElementById('new-amount-input').value;
-        if (!inputVal || inputVal < 10) {
-            return Swal.fire('Error', 'Please enter a valid amount (Min 10 Tk)', 'error');
-        }
+        if (!inputVal || inputVal < 10) return Swal.fire('Error', 'Please enter a valid amount (Min 10 Tk)', 'error');
         currentDepositAmount = parseInt(inputVal);
         document.getElementById('am-step-1').style.display = 'none';
         document.getElementById('am-step-2').style.display = 'block';
@@ -2341,9 +1908,7 @@
 
         document.getElementById('pay-admin-number').innerText = "Loading...";
         db.collection("admin").doc("payment").get().then(doc => {
-            if (doc.exists) {
-                document.getElementById('pay-admin-number').innerText = doc.data()[method.toLowerCase()] || "Not Available";
-            }
+            if (doc.exists) document.getElementById('pay-admin-number').innerText = doc.data()[method.toLowerCase()] || "Not Available";
         });
 
         document.getElementById('am-step-2').style.display = 'none';
@@ -2365,12 +1930,8 @@
     function handleNewVerify() {
         const trxId = document.getElementById('pay-trx-input').value.trim();
         if (!trxId) return Swal.fire('Required', 'Please enter the Transaction ID.', 'warning');
-        
-        if (isAutoPayEnabled) {
-            verifyAutoPayment(trxId, currentDepositAmount);
-        } else {
-            submitDeposit(trxId, currentDepositAmount);
-        }
+        if (isAutoPayEnabled) verifyAutoPayment(trxId, currentDepositAmount);
+        else submitDeposit(trxId, currentDepositAmount);
     }
 
     function submitDeposit(trxId, amount) {
@@ -2393,16 +1954,11 @@
         Swal.fire({ title: 'Verifying...', didOpen: () => Swal.showLoading() });
 
         rtdb.ref('XNXANIKPAY').orderByChild('txid').equalTo(trxId).once('value', async (snapshot) => {
-            if (!snapshot.exists()) {
-                return Swal.fire('Not Found', 'Transaction ID not found.', 'error');
-            }
+            if (!snapshot.exists()) return Swal.fire('Not Found', 'Transaction ID not found.', 'error');
 
             let paymentData = null;
             snapshot.forEach((child) => { paymentData = child.val(); });
-
-            if (parseInt(paymentData.amount) !== parseInt(amount)) {
-                return Swal.fire('Mismatch', 'Amount mismatch!', 'error');
-            }
+            if (parseInt(paymentData.amount) !== parseInt(amount)) return Swal.fire('Mismatch', 'Amount mismatch!', 'error');
 
             const amountToAdd = parseInt(paymentData.amount);
             const userRef = db.collection('users').doc(currentUser.uid);
@@ -2415,7 +1971,7 @@
 
                 if (isDirectBuy && pendingDirectOrder) {
                     Swal.fire({ title: 'Payment Verified!', text: 'Processing order...', icon: 'success', timer: 1500, showConfirmButton: false });
-                    processUidOrder(pendingDirectOrder.playerId);
+                    processUidOrder(pendingDirectOrder.playerId, pendingDirectOrder.gameType);
                     isDirectBuy = false;
                     pendingDirectOrder = null;
                 } else {
@@ -2441,28 +1997,24 @@
                 list.innerHTML = "";
                 snapshot.forEach(doc => {
                     const d = doc.data();
+                    const infoLabel = d.type === 'subscription' ? 'Gmail' : 'ID';
                     list.innerHTML += `
                         <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;">
                             <h4 style="font-size:14px;font-weight:800;">${d.gameName}</h4>
                             <p style="font-size:11px;color:var(--text-light);">${d.productName} - ৳${d.price} (${d.status})</p>
+                            ${d.playerId && d.playerId !== 'N/A' ? `<p style="font-size:11px;color:var(--primary);margin-top:2px;">${infoLabel}: ${d.playerId}</p>` : ''}
                         </div>`;
                 });
             });
     }
 
-    // ============================================================
-    // INIT ON LOAD
-    // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
         loadGlobalSettings();
         loadBanners();
         loadGamesAndCategories();
         loadLeaderboard();
         loadRecentOrdersGlobal();
-        
-        // রিয়েল-টাইম অটো নোটিফিকেশন লিসেনার চালু করা হলো
         listenToLiveNotifications();
-        
         document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
         document.getElementById('home-sec').style.display = 'block';
     });
@@ -2471,9 +2023,7 @@
         e.preventDefault();
         const email = document.getElementById('login-email').value.trim();
         if (!email) return Swal.fire('Error', 'দয়া করে ইমেইল লিখুন!', 'warning');
-        auth.sendPasswordResetEmail(email).then(() => {
-            Swal.fire('Success', 'রিসেট লিংক ইমেইলে পাঠানো হয়েছে!', 'success');
-        });
+        auth.sendPasswordResetEmail(email).then(() => Swal.fire('Success', 'রিসেট লিংক ইমেইলে পাঠানো হয়েছে!', 'success'));
     }
 </script>
 

@@ -22,8 +22,6 @@
             background: #f0f4f9;
             -webkit-tap-highlight-color: transparent;
         }
-        
-        /* Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(16px);
@@ -31,14 +29,6 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.06);
         }
-        .glass-dark {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        /* Sidebar */
         .sidebar {
             width: 270px;
             height: 100vh;
@@ -52,22 +42,10 @@
             overflow-y: auto;
             padding: 0;
         }
-        .sidebar::-webkit-scrollbar {
-            width: 3px;
-        }
-        .sidebar::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 10px;
-        }
-        .sidebar-closed {
-            transform: translateX(-100%);
-        }
-        @media (min-width: 1024px) {
-            .sidebar-closed {
-                transform: translateX(0);
-            }
-        }
-        
+        .sidebar::-webkit-scrollbar { width: 3px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        .sidebar-closed { transform: translateX(-100%); }
+        @media (min-width: 1024px) { .sidebar-closed { transform: translateX(0); } }
         .sidebar-brand {
             padding: 24px 24px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -89,10 +67,7 @@
             margin-top: 2px;
             -webkit-text-fill-color: #94a3b8;
         }
-        
-        .sidebar-nav {
-            padding: 16px 12px;
-        }
+        .sidebar-nav { padding: 16px 12px; }
         .sidebar-nav .nav-label {
             font-size: 9px;
             text-transform: uppercase;
@@ -124,21 +99,14 @@
             color: #94a3b8;
             transition: color 0.2s;
         }
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.06);
-            color: #f1f5f9;
-        }
-        .nav-item:hover i {
-            color: #22d3ee;
-        }
+        .nav-item:hover { background: rgba(255, 255, 255, 0.06); color: #f1f5f9; }
+        .nav-item:hover i { color: #22d3ee; }
         .nav-item.active {
             background: rgba(124, 58, 237, 0.2);
             color: #67e8f9;
             box-shadow: inset 3px 0 0 #7c3aed;
         }
-        .nav-item.active i {
-            color: #22d3ee;
-        }
+        .nav-item.active i { color: #22d3ee; }
         .nav-item .badge {
             margin-left: auto;
             background: rgba(124, 58, 237, 0.3);
@@ -148,27 +116,14 @@
             border-radius: 20px;
             font-weight: 700;
         }
-        .nav-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            margin: 12px 16px;
-        }
-        
-        /* Main content */
+        .nav-divider { height: 1px; background: rgba(255, 255, 255, 0.06); margin: 12px 16px; }
         .main-content {
             margin-left: 270px;
             min-height: 100vh;
             padding: 20px 24px 100px;
             transition: margin-left 0.3s;
         }
-        @media (max-width: 1023px) {
-            .main-content {
-                margin-left: 0;
-                padding: 16px;
-            }
-        }
-        
-        /* Top bar */
+        @media (max-width: 1023px) { .main-content { margin-left: 0; padding: 16px; } }
         .topbar {
             display: flex;
             align-items: center;
@@ -177,11 +132,7 @@
             gap: 16px;
             flex-wrap: wrap;
         }
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+        .topbar-left { display: flex; align-items: center; gap: 16px; }
         .hamburger {
             width: 40px;
             height: 40px;
@@ -196,32 +147,11 @@
             color: #475569;
             font-size: 18px;
         }
-        .hamburger:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-        }
-        @media (max-width: 1023px) {
-            .hamburger {
-                display: flex;
-            }
-        }
-        .topbar-title h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0f172a;
-            letter-spacing: -0.3px;
-        }
-        .topbar-title p {
-            font-size: 12px;
-            color: #94a3b8;
-            font-weight: 500;
-            margin-top: 1px;
-        }
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .hamburger:hover { background: #f8fafc; border-color: #cbd5e1; }
+        @media (max-width: 1023px) { .hamburger { display: flex; } }
+        .topbar-title h2 { font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.3px; }
+        .topbar-title p { font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 1px; }
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
         .topbar-right .logout-btn {
             padding: 8px 18px;
             border-radius: 10px;
@@ -236,9 +166,7 @@
             align-items: center;
             gap: 8px;
         }
-        .topbar-right .logout-btn:hover {
-            background: #fee2e2;
-        }
+        .topbar-right .logout-btn:hover { background: #fee2e2; }
         .topbar-right .admin-avatar {
             width: 38px;
             height: 38px;
@@ -251,8 +179,6 @@
             font-weight: 700;
             font-size: 16px;
         }
-        
-        /* Cards */
         .stat-card {
             background: white;
             border-radius: 16px;
@@ -260,10 +186,7 @@
             border: 1px solid #eef2f6;
             transition: all 0.2s;
         }
-        .stat-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
+        .stat-card:hover { border-color: #cbd5e1; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04); }
         .stat-card .stat-icon {
             width: 44px;
             height: 44px;
@@ -274,12 +197,7 @@
             font-size: 20px;
             margin-bottom: 12px;
         }
-        .stat-card .stat-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.5px;
-        }
+        .stat-card .stat-number { font-size: 28px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
         .stat-card .stat-label {
             font-size: 12px;
             font-weight: 600;
@@ -288,8 +206,6 @@
             letter-spacing: 0.5px;
             margin-top: 2px;
         }
-        
-        /* Section cards */
         .section-card {
             background: white;
             border-radius: 16px;
@@ -306,12 +222,8 @@
             align-items: center;
             gap: 10px;
         }
-        .section-card .section-title i {
-            color: #7c3aed;
-        }
-        
-        /* Form elements */
-        .form-input {
+        .section-card .section-title i { color: #7c3aed; }
+        .form-input, .form-select {
             width: 100%;
             padding: 12px 16px;
             border-radius: 12px;
@@ -322,32 +234,13 @@
             color: #0f172a;
             outline: none;
         }
-        .form-input:focus {
+        .form-input:focus, .form-select:focus {
             border-color: #7c3aed;
             background: white;
             box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
         }
-        .form-input::placeholder {
-            color: #94a3b8;
-        }
-        .form-select {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1.5px solid #e2e8f0;
-            background: #f8fafc;
-            font-size: 14px;
-            font-weight: 500;
-            color: #0f172a;
-            outline: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .form-select:focus {
-            border-color: #7c3aed;
-            background: white;
-        }
-        
+        .form-input::placeholder { color: #94a3b8; }
+        .form-select { font-weight: 500; cursor: pointer; }
         .skeleton-row {
             height: 62px;
             border-radius: 12px;
@@ -360,7 +253,6 @@
             0% { background-position: 100% 50%; }
             100% { background-position: 0 50%; }
         }
-
         .btn-primary {
             padding: 12px 24px;
             border-radius: 12px;
@@ -376,15 +268,8 @@
             gap: 8px;
             justify-content: center;
         }
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
-        }
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         .btn-secondary {
             padding: 12px 24px;
             border-radius: 12px;
@@ -396,9 +281,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-secondary:hover {
-            background: #e2e8f0;
-        }
+        .btn-secondary:hover { background: #e2e8f0; }
         .btn-danger {
             padding: 8px 16px;
             border-radius: 10px;
@@ -410,9 +293,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-danger:hover {
-            background: #fee2e2;
-        }
+        .btn-danger:hover { background: #fee2e2; }
         .btn-success {
             padding: 8px 16px;
             border-radius: 10px;
@@ -424,9 +305,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-success:hover {
-            background: #d1fae5;
-        }
+        .btn-success:hover { background: #d1fae5; }
         .btn-copy {
             padding: 8px 12px;
             border-radius: 10px;
@@ -443,12 +322,7 @@
             gap: 6px;
             white-space: nowrap;
         }
-        .btn-copy:hover {
-            background: #e2e8f0;
-            color: #7c3aed;
-        }
-        
-        /* List items */
+        .btn-copy:hover { background: #e2e8f0; color: #7c3aed; }
         .list-item {
             background: #f8fafc;
             border-radius: 12px;
@@ -462,31 +336,11 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .list-item:hover {
-            border-color: #cbd5e1;
-            background: white;
-        }
-        .list-item .item-info {
-            flex: 1;
-            min-width: 150px;
-        }
-        .list-item .item-info h4 {
-            font-weight: 700;
-            font-size: 14px;
-            color: #0f172a;
-        }
-        .list-item .item-info p {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 2px;
-        }
-        .list-item .item-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        /* Badge */
+        .list-item:hover { border-color: #cbd5e1; background: white; }
+        .list-item .item-info { flex: 1; min-width: 150px; }
+        .list-item .item-info h4 { font-weight: 700; font-size: 14px; color: #0f172a; }
+        .list-item .item-info p { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+        .list-item .item-actions { display: flex; gap: 8px; flex-wrap: wrap; }
         .badge-status {
             font-size: 9px;
             font-weight: 700;
@@ -495,36 +349,9 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .badge-pending {
-            background: #fef3c7;
-            color: #d97706;
-        }
-        .badge-approved {
-            background: #d1fae5;
-            color: #059669;
-        }
-        .badge-success {
-            background: #d1fae5;
-            color: #059669;
-        }
-        .badge-rejected {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        .badge-refunded {
-            background: #fef3c7;
-            color: #d97706;
-        }
-        .badge-instock {
-            background: #d1fae5;
-            color: #059669;
-        }
-        .badge-outstock {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        
-        /* Switch */
+        .badge-pending, .badge-refunded { background: #fef3c7; color: #d97706; }
+        .badge-approved, .badge-success, .badge-instock { background: #d1fae5; color: #059669; }
+        .badge-rejected, .badge-outstock { background: #fee2e2; color: #dc2626; }
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -532,18 +359,11 @@
             height: 26px;
             flex-shrink: 0;
         }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .toggle-switch .slider {
             position: absolute;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: #cbd5e1;
             transition: 0.3s;
             border-radius: 30px;
@@ -551,22 +371,14 @@
         .toggle-switch .slider:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
+            height: 18px; width: 18px;
+            left: 4px; bottom: 4px;
             background: white;
             transition: 0.3s;
             border-radius: 50%;
         }
-        .toggle-switch input:checked+.slider {
-            background: #7c3aed;
-        }
-        .toggle-switch input:checked+.slider:before {
-            transform: translateX(20px);
-        }
-        
-        /* Product image */
+        .toggle-switch input:checked+.slider { background: #7c3aed; }
+        .toggle-switch input:checked+.slider:before { transform: translateX(20px); }
         .product-thumb {
             width: 48px;
             height: 48px;
@@ -576,52 +388,16 @@
             border: 1px solid #e2e8f0;
             flex-shrink: 0;
         }
-        
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 0.25s ease;
-        }
+        .fade-in { animation: fadeIn 0.25s ease; }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .slide-in {
-            animation: slideIn 0.3s ease;
-        }
+        .slide-in { animation: slideIn 0.3s ease; }
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-12px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-        
-        /* Modal overlay */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -635,9 +411,7 @@
             padding: 20px;
             animation: fadeIn 0.2s ease;
         }
-        .modal-overlay.hidden {
-            display: none;
-        }
+        .modal-overlay.hidden { display: none; }
         .modal-box {
             background: white;
             border-radius: 24px;
@@ -652,10 +426,8 @@
         }
         .modal-box .modal-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 32px;
-            height: 32px;
+            top: 16px; right: 16px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             background: #f1f5f9;
             border: none;
@@ -666,203 +438,13 @@
             color: #64748b;
             transition: all 0.2s;
         }
-        .modal-box .modal-close:hover {
-            background: #e2e8f0;
-        }
-        
-        /* Responsive grid */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
+        .modal-box .modal-close:hover { background: #e2e8f0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
         }
-        
-        /* Misc */
-        .truncate-text {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .flex-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gap-2 {
-            gap: 8px;
-        }
-        .gap-3 {
-            gap: 12px;
-        }
-        .gap-4 {
-            gap: 16px;
-        }
-        .mt-2 {
-            margin-top: 8px;
-        }
-        .mt-3 {
-            margin-top: 12px;
-        }
-        .mt-4 {
-            margin-top: 16px;
-        }
-        .mb-2 {
-            margin-bottom: 8px;
-        }
-        .mb-3 {
-            margin-bottom: 12px;
-        }
-        .mb-4 {
-            margin-bottom: 16px;
-        }
-        .w-full {
-            width: 100%;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-sm {
-            font-size: 13px;
-        }
-        .text-xs {
-            font-size: 11px;
-        }
-        .font-bold {
-            font-weight: 700;
-        }
-        .font-semibold {
-            font-weight: 600;
-        }
-        .text-slate-400 {
-            color: #94a3b8;
-        }
-        .text-slate-500 {
-            color: #64748b;
-        }
-        .text-slate-600 {
-            color: #475569;
-        }
-        .text-slate-700 {
-            color: #334155;
-        }
-        .text-slate-800 {
-            color: #1e293b;
-        }
-        .text-indigo-600 {
-            color: #7c3aed;
-        }
-        .text-red-500 {
-            color: #ef4444;
-        }
-        .text-green-600 {
-            color: #16a34a;
-        }
-        .bg-white {
-            background: white;
-        }
-        .bg-slate-50 {
-            background: #f8fafc;
-        }
-        .bg-indigo-50 {
-            background: #eef2ff;
-        }
-        .bg-red-50 {
-            background: #fef2f2;
-        }
-        .bg-green-50 {
-            background: #ecfdf5;
-        }
-        .border {
-            border: 1px solid #e2e8f0;
-        }
-        .border-slate-100 {
-            border-color: #f1f5f9;
-        }
-        .border-slate-200 {
-            border-color: #e2e8f0;
-        }
-        .rounded-xl {
-            border-radius: 12px;
-        }
-        .rounded-2xl {
-            border-radius: 16px;
-        }
-        .shadow-sm {
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        }
-        .shadow-md {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-        .hidden {
-            display: none !important;
-        }
-        .block {
-            display: block;
-        }
-        .flex {
-            display: flex;
-        }
-        .items-center {
-            align-items: center;
-        }
-        .justify-between {
-            justify-content: space-between;
-        }
-        .flex-wrap {
-            flex-wrap: wrap;
-        }
-        .relative {
-            position: relative;
-        }
-        .absolute {
-            position: absolute;
-        }
-        .inset-0 {
-            inset: 0;
-        }
-        .overflow-hidden {
-            overflow: hidden;
-        }
-        .overflow-y-auto {
-            overflow-y: auto;
-        }
-        .object-cover {
-            object-fit: cover;
-        }
-        .cursor-pointer {
-            cursor: pointer;
-        }
-        .select-all {
-            user-select: all;
-        }
-        .resize-none {
-            resize: none;
-        }
-        .whitespace-nowrap {
-            white-space: nowrap;
-        }
-        .break-all {
-            word-break: break-all;
-        }
-
-        /* Save button loading state */
-        .btn-primary.loading {
-            pointer-events: none;
-            opacity: 0.7;
-        }
+        .truncate-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     </style>
 </head>
 <body>
@@ -909,7 +491,7 @@
                     <i class="fas fa-layer-group"></i> Categories
                 </button>
                 <button onclick="nav('games')" id="btn-games" class="nav-item">
-                    <i class="fas fa-gamepad"></i> Games
+                    <i class="fas fa-gamepad"></i> Games & Services
                 </button>
                 <div class="nav-divider"></div>
                 <div class="nav-label">Content</div>
@@ -955,16 +537,12 @@
             <div id="view-deposits" class="fade-in">
                 <div class="grid-2 mb-4">
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:#eef2ff;color:#7c3aed;">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                        <div class="stat-icon" style="background:#eef2ff;color:#7c3aed;"><i class="fas fa-clock"></i></div>
                         <div class="stat-number" id="count-pending-dep">0</div>
                         <div class="stat-label">Pending Deposits</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:#ecfdf5;color:#10b981;">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                        <div class="stat-icon" style="background:#ecfdf5;color:#10b981;"><i class="fas fa-check-circle"></i></div>
                         <div class="stat-number" id="count-approved-dep">0</div>
                         <div class="stat-label">Approved Today</div>
                     </div>
@@ -979,7 +557,6 @@
                     <div id="deposit-list">
                         <div class="skeleton-row"></div>
                         <div class="skeleton-row"></div>
-                        <div class="skeleton-row"></div>
                     </div>
                 </div>
             </div>
@@ -988,23 +565,19 @@
             <div id="view-user-orders" class="hidden fade-in">
                 <div class="grid-2 mb-4">
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:#fef3c7;color:#d97706;">
-                            <i class="fas fa-hourglass-half"></i>
-                        </div>
+                        <div class="stat-icon" style="background:#fef3c7;color:#d97706;"><i class="fas fa-hourglass-half"></i></div>
                         <div class="stat-number" id="count-pending-ord">0</div>
                         <div class="stat-label">Pending Orders</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background:#dbeafe;color:#2563eb;">
-                            <i class="fas fa-truck"></i>
-                        </div>
+                        <div class="stat-icon" style="background:#dbeafe;color:#2563eb;"><i class="fas fa-truck"></i></div>
                         <div class="stat-number" id="count-total-ord">0</div>
                         <div class="stat-label">Total Orders</div>
                     </div>
                 </div>
                 <div class="section-card">
                     <div class="section-title">
-                        <i class="fas fa-shopping-bag"></i> Game Orders
+                        <i class="fas fa-shopping-bag"></i> All Orders
                         <button onclick="fetchUserOrders()" class="btn-secondary" style="padding:6px 14px;font-size:12px;margin-left:auto;">
                             <i class="fas fa-sync-alt"></i> Refresh
                         </button>
@@ -1034,8 +607,8 @@
                 <div class="section-card">
                     <div class="section-title"><i class="fas fa-plus-circle"></i> New Category</div>
                     <div class="grid-2">
-                        <input type="text" id="new-cat-name" placeholder="Category Name" class="form-input">
-                        <input type="number" id="new-cat-slot" placeholder="Slot (order priority)" class="form-input">
+                        <input type="text" id="new-cat-name" placeholder="Category Name (e.g. Diamond Topup / Subscription)" class="form-input">
+                        <input type="number" id="new-cat-slot" placeholder="Slot (order priority: 1, 2, 3...)" class="form-input">
                     </div>
                     <button onclick="addCategory()" class="btn-primary w-full mt-3">Add Category</button>
                 </div>
@@ -1045,32 +618,31 @@
                 </div>
             </div>
 
-            <!-- VIEW: GAMES -->
+            <!-- VIEW: GAMES & SERVICES -->
             <div id="view-games" class="hidden fade-in">
-                <!-- Create Game -->
                 <div class="section-card games-main-view">
-                    <div class="section-title"><i class="fas fa-plus-circle"></i> Create New Game</div>
+                    <div class="section-title"><i class="fas fa-plus-circle"></i> Create New Service / Game</div>
                     <div class="grid-2">
-                        <input type="text" id="new-game-name" placeholder="Game Name" class="form-input">
+                        <input type="text" id="new-game-name" placeholder="Name (e.g. Free Fire UID / Netflix / CapCut)" class="form-input">
                         <input type="text" id="new-game-img" placeholder="Image URL" class="form-input">
                     </div>
                     <div class="grid-2 mt-2">
                         <select id="new-game-type" class="form-select">
-                            <option value="uid">UID TopUp</option>
-                            <option value="code">Voucher Code</option>
-                            <option value="auto-topup">Auto TopUp</option>
+                            <option value="uid">UID TopUp (Player ID নেবে)</option>
+                            <option value="subscription">Subscription (Gmail Address নেবে)</option>
+                            <option value="code">Voucher Code (ইনস্ট্যান্ট কোড)</option>
+                            <option value="auto-topup">Auto TopUp (Player ID নেবে)</option>
                         </select>
                         <select id="new-game-category" class="form-select">
                             <option value="">Select Category</option>
                         </select>
                     </div>
                     <input type="text" id="new-game-rules" placeholder="Rules (optional)" class="form-input mt-2">
-                    <button onclick="addGame()" class="btn-primary w-full mt-3">Create Game</button>
+                    <button onclick="addGame()" class="btn-primary w-full mt-3">Create Service</button>
                 </div>
 
-                <!-- Games List -->
                 <div class="section-card games-main-view">
-                    <div class="section-title"><i class="fas fa-gamepad"></i> Games</div>
+                    <div class="section-title"><i class="fas fa-gamepad"></i> Services & Games</div>
                     <div id="games-grid-by-category"></div>
                 </div>
 
@@ -1082,7 +654,7 @@
                                 <i class="fas fa-arrow-left"></i> Back
                             </button>
                             <div>
-                                <h3 class="font-bold text-slate-800 text-lg" id="pm-game-title">Game Name</h3>
+                                <h3 class="font-bold text-slate-800 text-lg" id="pm-game-title">Service Name</h3>
                                 <p class="text-xs text-indigo-600 font-semibold" id="pm-game-type-display">Manage Products</p>
                             </div>
                         </div>
@@ -1090,7 +662,7 @@
                     <div class="section-card">
                         <div class="section-title"><i class="fas fa-plus-circle"></i> Add Package</div>
                         <div class="flex gap-3 flex-wrap">
-                            <input type="text" id="prod-name" placeholder="Package Name" class="form-input" style="flex:2;min-width:150px;">
+                            <input type="text" id="prod-name" placeholder="Package Name (e.g. 115 Diamond / 1 Month)" class="form-input" style="flex:2;min-width:150px;">
                             <input type="number" id="prod-price" placeholder="Price" class="form-input" style="flex:1;min-width:100px;">
                             <button onclick="addProduct()" class="btn-primary" style="flex:0 0 auto;">ADD</button>
                         </div>
@@ -1138,7 +710,6 @@
 
             <!-- VIEW: SETTINGS -->
             <div id="view-settings" class="hidden fade-in">
-                <!-- Auto Payment -->
                 <div class="section-card flex items-center justify-between flex-wrap gap-3">
                     <div>
                         <h3 class="font-bold text-slate-800">Auto Payment System</h3>
@@ -1150,7 +721,6 @@
                     </label>
                 </div>
 
-                <!-- Payment Numbers -->
                 <div class="section-card">
                     <div class="section-title"><i class="fas fa-mobile-alt"></i> Payment Numbers</div>
                     <div class="grid-2">
@@ -1179,7 +749,6 @@
                     <button onclick="savePayment()" id="save-payment-btn" class="btn-primary w-full mt-3">Update Numbers</button>
                 </div>
 
-                <!-- Branding & Config -->
                 <div class="section-card">
                     <div class="section-title"><i class="fas fa-palette"></i> Branding & Config</div>
                     <div class="grid-2">
@@ -1241,7 +810,6 @@
                     <button onclick="saveConfig()" id="save-config-btn" class="btn-primary w-full mt-4">Save All Config</button>
                 </div>
 
-                <!-- Auto TopUp API -->
                 <div class="section-card">
                     <div class="section-title"><i class="fas fa-robot"></i> Auto TopUp API Configuration</div>
                     <div class="grid-2">
@@ -1297,25 +865,19 @@
     </div>
 
     <script>
-        // ============================================================
-        // FIREBASE CONFIG
-        // ============================================================
         const firebaseConfig = {
-  apiKey: "AIzaSyA7sXxdhRR2BROMYS9PXgzm38lGURBdCGw",
-  authDomain: "quick-diamond-2af30.firebaseapp.com",
-  databaseURL: "https://quick-diamond-2af30-default-rtdb.firebaseio.com",
-  projectId: "quick-diamond-2af30",
-  storageBucket: "quick-diamond-2af30.firebasestorage.app",
-  messagingSenderId: "404863848588",
-  appId: "1:404863848588:web:fe762b292202da9aec6ba9"
-};
+            apiKey: "AIzaSyA7sXxdhRR2BROMYS9PXgzm38lGURBdCGw",
+            authDomain: "quick-diamond-2af30.firebaseapp.com",
+            databaseURL: "https://quick-diamond-2af30-default-rtdb.firebaseio.com",
+            projectId: "quick-diamond-2af30",
+            storageBucket: "quick-diamond-2af30.firebasestorage.app",
+            messagingSenderId: "404863848588",
+            appId: "1:404863848588:web:fe762b292202da9aec6ba9"
+        };
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
 
-        // ============================================================
-        // AUTH
-        // ============================================================
         function adminLogin() {
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
@@ -1344,50 +906,36 @@
             auth.signOut().then(() => Swal.fire({ toast: true, icon: 'success', title: 'Logged Out', position: 'top', showConfirmButton: false, timer: 1200 }));
         }
 
-        // ============================================================
-        // SIDEBAR
-        // ============================================================
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('sidebar-closed');
         }
 
-        // ============================================================
-        // NAVIGATION
-        // ============================================================
         const loadedTabs = new Set();
         const tabFetchers = {
-            deposits: fetchDepositsSafe,
-            'user-orders': fetchUserOrdersSafe,
-            users: fetchUsersSafe,
-            categories: fetchCategoriesSafe,
-            games: fetchGamesSafe,
-            banners: fetchBannersSafe,
-            tutorials: fetchTutorialsSafe,
-            settings: fetchSettingsSafe
+            deposits: () => fetchDeposits(),
+            'user-orders': () => fetchUserOrders(),
+            users: () => fetchUsers(),
+            categories: () => fetchCategories(),
+            games: () => {
+                fetchGames();
+                if (!loadedTabs.has('categories')) {
+                    loadedTabs.add('categories');
+                    fetchCategories();
+                }
+            },
+            banners: () => fetchBanners(),
+            tutorials: () => fetchTutorials(),
+            settings: () => fetchSettings()
         };
-        function fetchDepositsSafe() { fetchDeposits(); }
-        function fetchUserOrdersSafe() { fetchUserOrders(); }
-        function fetchUsersSafe() { fetchUsers(); }
-        function fetchCategoriesSafe() { fetchCategories(); }
-        function fetchGamesSafe() {
-            fetchGames();
-            if (!loadedTabs.has('categories')) {
-                loadedTabs.add('categories');
-                fetchCategories();
-            }
-        }
-        function fetchBannersSafe() { fetchBanners(); }
-        function fetchTutorialsSafe() { fetchTutorials(); }
-        function fetchSettingsSafe() { fetchSettings(); }
 
         function nav(tab) {
             const tabs = ['deposits', 'user-orders', 'users', 'categories', 'games', 'banners', 'tutorials', 'settings'];
             const titles = {
                 deposits: ['Deposits', 'Manage all deposit requests'],
-                'user-orders': ['Orders', 'Manage all game orders'],
+                'user-orders': ['Orders', 'Manage all orders'],
                 users: ['Users', 'Manage all registered users'],
-                categories: ['Categories', 'Manage game categories'],
-                games: ['Games', 'Manage games and packages'],
+                categories: ['Categories', 'Manage categories'],
+                games: ['Services & Games', 'Manage games, subscriptions & packages'],
                 banners: ['Banners', 'Manage banner ads'],
                 tutorials: ['Tutorials', 'Manage tutorial videos'],
                 settings: ['Settings', 'System configuration']
@@ -1420,9 +968,7 @@
         }
         setTimeout(() => nav('deposits'), 300);
 
-        // ============================================================
         // DEPOSITS
-        // ============================================================
         function fetchDeposits() {
             db.collection("deposits").where("status", "==", "pending").onSnapshot(snap => {
                 const list = document.getElementById('deposit-list');
@@ -1451,8 +997,7 @@
                                 <button onclick="rejectDeposit('${doc.id}')" class="btn-danger">Reject</button>
                                 <button onclick="approveDeposit('${doc.id}','${d.userId}',${d.amount})" class="btn-success">Approve</button>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
             });
 
@@ -1488,9 +1033,7 @@
             });
         }
 
-        // ============================================================
         // ORDERS
-        // ============================================================
         function fetchUserOrders() {
             db.collection("orders").orderBy('date', 'desc').limit(80).onSnapshot(snap => {
                 const list = document.getElementById('user-orders-list');
@@ -1515,9 +1058,14 @@
                     let extra = '';
                     if (d.type === 'code' && d.redeemCode) {
                         extra = `<div class="bg-indigo-50/60 p-2 rounded-lg mt-2 border border-indigo-100 text-center"><span class="text-[10px] font-bold uppercase text-indigo-600">Code</span><p class="font-mono font-bold text-sm select-all">${d.redeemCode}</p></div>`;
-                    } else if (d.type === 'uid' && d.playerId) {
-                        extra = `<div class="bg-slate-50 p-2 rounded-lg mt-2"><span class="text-[10px] text-slate-400 uppercase">Player ID</span><p class="font-mono font-bold text-sm select-all">${d.playerId}</p></div>`;
+                    } else if (d.type === 'subscription' && d.playerId) {
+                        extra = `<div class="bg-purple-50 p-2 rounded-lg mt-2 border border-purple-100"><span class="text-[10px] text-purple-600 font-bold uppercase">Gmail Address</span><p class="font-mono font-bold text-sm text-purple-900 select-all">${d.playerId}</p></div>`;
+                    } else if (d.playerId && d.playerId !== 'N/A') {
+                        const isEmail = d.playerId.includes('@');
+                        const labelText = isEmail ? 'Gmail Address' : 'Player ID';
+                        extra = `<div class="bg-slate-50 p-2 rounded-lg mt-2"><span class="text-[10px] text-slate-400 uppercase">${labelText}</span><p class="font-mono font-bold text-sm select-all">${d.playerId}</p></div>`;
                     }
+
                     let statusBadge = '';
                     if (d.status === 'pending') statusBadge = `<span class="badge-status badge-pending">Pending</span>`;
                     else if (d.status === 'success') statusBadge = `<span class="badge-status badge-success">Completed</span>`;
@@ -1530,8 +1078,7 @@
                             <div class="item-actions mt-2">
                                 <button onclick="refundOrder('${doc.id}','${d.userId}',${d.price})" class="btn-danger">Refund</button>
                                 <button onclick="completeOrder('${doc.id}')" class="btn-success">Complete</button>
-                            </div>
-                        `;
+                            </div>`;
                     }
                     list.innerHTML += `
                         <div class="list-item" style="border-left:4px solid ${d.status === 'success' ? '#10b981' : d.status === 'pending' ? '#f59e0b' : '#ef4444'};">
@@ -1541,12 +1088,11 @@
                                     <span class="font-bold text-indigo-600">৳${d.price}</span>
                                     ${statusBadge}
                                 </div>
-                                <p class="text-xs text-slate-500">${d.gameName || 'Game'} · ${d.type || 'uid'} ${d.userEmail ? '· ' + d.userEmail : ''}</p>
+                                <p class="text-xs text-slate-500">${d.gameName || 'Service'} · ${d.type || 'uid'} ${d.userEmail ? '· ' + d.userEmail : ''}</p>
                                 ${extra}
                                 ${controls}
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
             });
         }
@@ -1572,11 +1118,8 @@
                 });
         }
 
-        // ============================================================
         // USERS
-        // ============================================================
         let allUsers = [];
-
         function fetchUsers() {
             db.collection("users").onSnapshot(snap => {
                 allUsers = [];
@@ -1599,8 +1142,7 @@
                         <button onclick="viewUserDetails('${u.id}')" class="btn-secondary" style="padding:6px 14px;font-size:12px;">
                             <i class="fas fa-eye"></i> View
                         </button>
-                    </div>
-                `;
+                    </div>`;
             });
         }
 
@@ -1610,7 +1152,6 @@
         }
 
         let currentUserId = null;
-
         function viewUserDetails(id) {
             currentUserId = id;
             const u = allUsers.find(x => x.id === id);
@@ -1646,9 +1187,7 @@
             });
         }
 
-        // ============================================================
         // CATEGORIES
-        // ============================================================
         function fetchCategories() {
             db.collection("categories").orderBy("slot").onSnapshot(snap => {
                 const list = document.getElementById('categories-list');
@@ -1667,8 +1206,7 @@
                             <button onclick="deleteCategory('${doc.id}')" class="btn-danger">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
-                        </div>
-                    `;
+                        </div>`;
                     sel.innerHTML += `<option value="${doc.id}">${d.name}</option>`;
                 });
             });
@@ -1691,15 +1229,13 @@
             });
         }
 
-        // ============================================================
-        // GAMES & PRODUCTS
-        // ============================================================
+        // GAMES & SERVICES
         let currentGameId = null;
 
         async function fetchGames() {
             const grid = document.getElementById('games-grid-by-category');
             if (!grid) return;
-            grid.innerHTML = '<div class="text-center py-8 text-slate-400 text-sm">Loading games...</div>';
+            grid.innerHTML = '<div class="text-center py-8 text-slate-400 text-sm">Loading services...</div>';
             try {
                 const [catSnap, gameSnap] = await Promise.all([
                     db.collection("categories").orderBy("slot").get(),
@@ -1719,67 +1255,65 @@
                     if (cat.games.length) {
                         let html = '';
                         cat.games.forEach(g => {
+                            const typeLabel = g.type === 'subscription' ? 'Subscription (Gmail)' : (g.type || 'uid');
                             html += `
                                 <div class="list-item">
                                     <div class="flex items-center gap-3">
                                         <img src="${g.image || 'https://via.placeholder.com/48'}" class="product-thumb" onerror="this.src='https://via.placeholder.com/48'">
                                         <div class="item-info">
                                             <h4>${g.name}</h4>
-                                            <p class="text-xs text-slate-500">${g.type || 'uid'} ${g.rules ? '· ' + g.rules : ''}</p>
+                                            <p class="text-xs text-slate-500">${typeLabel} ${g.rules ? '· ' + g.rules : ''}</p>
                                         </div>
                                     </div>
                                     <div class="item-actions">
-                                        <button onclick="manageProducts('${g.id}','${g.name}','${g.type || 'uid'}')" class="btn-primary" style="padding:6px 14px;font-size:12px;">
+                                        <button onclick="manageProducts('${g.id}','${g.name.replace(/'/g, "\\'")}','${g.type || 'uid'}')" class="btn-primary" style="padding:6px 14px;font-size:12px;">
                                             <i class="fas fa-box"></i> Manage
                                         </button>
                                         <button onclick="deleteGame('${g.id}')" class="btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
-                                </div>
-                            `;
+                                </div>`;
                         });
                         grid.innerHTML += `
                             <div class="mb-3">
                                 <h3 class="font-bold text-slate-700 mb-2 text-sm border-l-4 border-indigo-500 pl-3">${cat.name}</h3>
                                 ${html}
-                            </div>
-                        `;
+                            </div>`;
                     }
                 }
                 if (uncat.length) {
                     let html = '';
                     uncat.forEach(g => {
+                        const typeLabel = g.type === 'subscription' ? 'Subscription (Gmail)' : (g.type || 'uid');
                         html += `
                             <div class="list-item">
                                 <div class="flex items-center gap-3">
                                     <img src="${g.image || 'https://via.placeholder.com/48'}" class="product-thumb" onerror="this.src='https://via.placeholder.com/48'">
                                     <div class="item-info">
                                         <h4>${g.name}</h4>
-                                        <p class="text-xs text-slate-500">${g.type || 'uid'}</p>
+                                        <p class="text-xs text-slate-500">${typeLabel}</p>
                                     </div>
                                 </div>
                                 <div class="item-actions">
-                                    <button onclick="manageProducts('${g.id}','${g.name}','${g.type || 'uid'}')" class="btn-primary" style="padding:6px 14px;font-size:12px;">
+                                    <button onclick="manageProducts('${g.id}','${g.name.replace(/'/g, "\\'")}','${g.type || 'uid'}')" class="btn-primary" style="padding:6px 14px;font-size:12px;">
                                         <i class="fas fa-box"></i> Manage
                                     </button>
                                     <button onclick="deleteGame('${g.id}')" class="btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
-                            </div>
-                        `;
+                            </div>`;
                     });
                     grid.innerHTML += `
                         <div>
                             <h3 class="font-bold text-slate-500 mb-2 text-sm border-l-4 border-slate-300 pl-3">Uncategorized</h3>
                             ${html}
-                        </div>
-                    `;
+                        </div>`;
                 }
             } catch (e) {
                 console.error(e);
-                grid.innerHTML = '<div class="text-center py-8 text-red-400 text-sm">Error loading games</div>';
+                grid.innerHTML = '<div class="text-center py-8 text-red-400 text-sm">Error loading services</div>';
             }
         }
 
@@ -1792,7 +1326,7 @@
             if (!name || !img || !cat) return Swal.fire('Missing', 'Name, Category & Image required', 'warning');
             db.collection("services").add({ name, type, categoryId: cat, image: img, rules: rules || '' })
                 .then(() => {
-                    Swal.fire({ toast: true, icon: 'success', title: 'Game created', position: 'top', showConfirmButton: false, timer: 1200 });
+                    Swal.fire({ toast: true, icon: 'success', title: 'Service created', position: 'top', showConfirmButton: false, timer: 1200 });
                     document.getElementById('new-game-name').value = '';
                     document.getElementById('new-game-img').value = '';
                     document.getElementById('new-game-rules').value = '';
@@ -1811,7 +1345,10 @@
             document.querySelectorAll('.games-main-view').forEach(el => el.classList.add('hidden'));
             document.getElementById('products-manager-view').classList.remove('hidden');
             document.getElementById('pm-game-title').innerText = gname;
-            document.getElementById('pm-game-type-display').innerText = gtype.includes('code') || gtype.includes('auto') ? 'STOCK MANAGEMENT' : 'UID PACKAGES';
+            let typeText = 'UID PACKAGES';
+            if (gtype === 'subscription') typeText = 'SUBSCRIPTION PACKAGES (GMAIL)';
+            else if (gtype.includes('code') || gtype.includes('auto')) typeText = 'STOCK MANAGEMENT';
+            document.getElementById('pm-game-type-display').innerText = typeText;
             fetchProducts(gid);
         }
 
@@ -1849,8 +1386,7 @@
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
             });
         }
@@ -1884,9 +1420,7 @@
             });
         }
 
-        // ============================================================
         // BANNERS
-        // ============================================================
         function fetchBanners() {
             db.collection("banners").onSnapshot(snap => {
                 const list = document.getElementById('banners-list');
@@ -1904,8 +1438,7 @@
                             <button onclick="db.collection('banners').doc('${doc.id}').delete()" class="absolute top-2 right-2 bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-lg opacity-0 group-hover:opacity-100 transition">
                                 <i class="fas fa-times"></i>
                             </button>
-                        </div>
-                    `;
+                        </div>`;
                 });
             });
         }
@@ -1919,9 +1452,7 @@
             });
         }
 
-        // ============================================================
         // TUTORIALS
-        // ============================================================
         function fetchTutorials() {
             db.collection("tutorials").onSnapshot(snap => {
                 const list = document.getElementById('tutorials-list');
@@ -1945,8 +1476,7 @@
                             <button onclick="db.collection('tutorials').doc('${doc.id}').delete()" class="btn-danger">
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </div>
-                    `;
+                        </div>`;
                 });
             });
         }
@@ -1964,15 +1494,12 @@
             });
         }
 
-        // ============================================================
         // COPY FIELD VALUE
-        // ============================================================
         function copyFieldValue(id) {
             const el = document.getElementById(id);
             if (!el) return;
             const val = el.value.trim();
             if (!val) return Swal.fire('Error', 'No value to copy', 'warning');
-            
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(val).then(() => {
                     Swal.fire({ toast: true, icon: 'success', title: 'Copied!', position: 'top', showConfirmButton: false, timer: 1200 });
@@ -1999,29 +1526,20 @@
             document.body.removeChild(el);
         }
 
-        // ============================================================
-        // SETTINGS (FIXED)
-        // ============================================================
+        // SETTINGS
         function fetchSettings() {
-            // Payment numbers
             db.collection("admin").doc("payment").onSnapshot(d => {
                 if (d.exists) {
                     const data = d.data();
-                    const bk = document.getElementById('set-bkash');
-                    const ng = document.getElementById('set-nagad');
-                    const rk = document.getElementById('set-rocket');
-                    if (bk) bk.value = data.bkash || '';
-                    if (ng) ng.value = data.nagad || '';
-                    if (rk) rk.value = data.rocket || '';
+                    if (document.getElementById('set-bkash')) document.getElementById('set-bkash').value = data.bkash || '';
+                    if (document.getElementById('set-nagad')) document.getElementById('set-nagad').value = data.nagad || '';
+                    if (document.getElementById('set-rocket')) document.getElementById('set-rocket').value = data.rocket || '';
                 }
             });
 
-            // General settings
             db.collection("settings").doc("general").onSnapshot(d => {
                 if (!d.exists) return;
                 const data = d.data();
-                
-                // Auto pay toggle
                 const toggle = document.getElementById('autopay-toggle-switch');
                 const statusText = document.getElementById('autopay-status-text');
                 const enabled = data.autoPayEnabled === true;
@@ -2031,7 +1549,6 @@
                     statusText.style.color = enabled ? '#16a34a' : '#94a3b8';
                 }
 
-                // Safe assignment helper
                 const setVal = (id, val) => {
                     const el = document.getElementById(id);
                     if (el) el.value = val || '';
@@ -2052,7 +1569,6 @@
                 setVal('set-auto-api-key', data.autoTopUpApiKey);
                 setVal('set-auto-callback-url', data.autoTopUpCallbackUrl);
 
-                // Logo preview
                 const preview = document.getElementById('preview-logo');
                 if (preview) {
                     if (data.logoUrl) {
@@ -2109,11 +1625,7 @@
             btn.disabled = true;
 
             try {
-                const getVal = (id) => {
-                    const el = document.getElementById(id);
-                    return el ? el.value : '';
-                };
-
+                const getVal = (id) => document.getElementById(id)?.value || '';
                 const data = {
                     siteName: getVal('set-site-name').trim() || 'Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ',
                     logoUrl: getVal('set-logo-url'),
@@ -2153,11 +1665,7 @@
             btn.disabled = true;
 
             try {
-                const getVal = (id) => {
-                    const el = document.getElementById(id);
-                    return el ? el.value : '';
-                };
-
+                const getVal = (id) => document.getElementById(id)?.value || '';
                 const data = {
                     autoTopUpApiUrl: getVal('set-auto-api-url'),
                     autoTopUpApiKey: getVal('set-auto-api-key'),
@@ -2181,8 +1689,6 @@
                 Swal.fire('Error', 'Something went wrong: ' + err.message, 'error');
             }
         }
-
-        console.log('%c✅ Admin Panel Loaded', 'color:#7c3aed;font-weight:bold;font-size:14px;');
     </script>
 </body>
 </html>
