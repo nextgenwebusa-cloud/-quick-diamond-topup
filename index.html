@@ -2190,9 +2190,43 @@
     }
 
     function handleGoogleLogin() {
-        var provider = new firebase.auth.GoogleAuthProvider();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+
         Swal.fire({ title: 'Connecting to Google...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        auth.signInWithRedirect(provider);
+
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                const userRef = db.collection('users').doc(user.uid);
+                return userRef.get().then((docSnapshot) => {
+                    if (!docSnapshot.exists) {
+                        return userRef.set({
+                            name: user.displayName || 'User',
+                            email: user.email,
+                            balance: 0,
+                            referredBy: storedRefCode || '',
+                            referralRewarded: false,
+                            createdAt: new Date(),
+                            photoURL: user.photoURL || ''
+                        });
+                    }
+                });
+            })
+            .then(() => {
+                Swal.close();
+                closeAuth();
+                showSec('home');
+                Swal.fire({ toast: true, icon: 'success', title: 'Welcome!', position: 'top', showConfirmButton: false, timer: 1500 });
+            })
+            .catch((error) => {
+                Swal.close();
+                if (error.code === 'auth/popup-blocked') {
+                    auth.signInWithRedirect(provider);
+                } else if (error.code !== 'auth/popup-closed-by-user') {
+                    Swal.fire('Error', error.message, 'error');
+                }
+            });
     }
 
     auth.getRedirectResult().then((result) => {
