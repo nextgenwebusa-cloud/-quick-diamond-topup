@@ -430,49 +430,60 @@
         }
         .spin-wheel-stage {
             position: relative;
-            width: 220px;
-            height: 220px;
-            margin: 8px auto 16px;
+            width: 270px;
+            height: 270px;
+            margin: 12px auto 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .spin-wheel-pointer {
             position: absolute;
-            top: -10px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 11px solid transparent;
-            border-right: 11px solid transparent;
-            border-top: 20px solid #facc15;
-            z-index: 10;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 22px solid #facc15;
+            z-index: 12;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
         }
         .spin-wheel-disc {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             border: 5px solid #4c1d95;
-            background: conic-gradient(
-                #7c3aed 0deg 60deg,
-                #ec4899 60deg 120deg,
-                #2563eb 120deg 180deg,
-                #16a34a 180deg 240deg,
-                #d97706 240deg 300deg,
-                #4f46e5 300deg 360deg
-            );
             box-shadow: 0 10px 25px rgba(76, 29, 149, 0.28);
             transition: transform 4.2s cubic-bezier(0.17, 0.67, 0.12, 0.99);
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
+            background: #4c1d95;
+        }
+        .spin-wheel-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .spin-slice-text {
+            fill: #ffffff;
+            font-size: 11.5px;
+            font-weight: 800;
+            text-anchor: middle;
+            dominant-baseline: central;
+            paint-order: stroke;
+            stroke: rgba(15, 23, 42, 0.55);
+            stroke-width: 2.5px;
+            stroke-linejoin: round;
         }
         .spin-wheel-center {
-            width: 54px;
-            height: 54px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             background: #ffffff;
             border: 3px solid #6d28d9;
@@ -482,24 +493,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .spin-prizes-legend {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
-            margin-bottom: 14px;
-            font-size: 11px;
-        }
-        .spin-prize-chip {
-            background: #f5f3ff;
-            border: 1px solid #ddd6fe;
-            border-radius: 8px;
-            padding: 6px 8px;
-            font-weight: 600;
-            color: var(--text-dark);
-            text-align: center;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+            pointer-events: none;
         }
         .spin-status-box {
             background: #f9fafb;
@@ -1543,17 +1539,9 @@
             <div class="spin-wheel-stage">
                 <div class="spin-wheel-pointer"></div>
                 <div class="spin-wheel-disc" id="spin-wheel-disc">
-                    <div class="spin-wheel-center">SPIN</div>
+                    <svg id="spin-wheel-svg" class="spin-wheel-svg" viewBox="0 0 260 260" aria-hidden="true"></svg>
                 </div>
-            </div>
-
-            <div class="spin-prizes-legend">
-                <div class="spin-prize-chip">৳2 বোনাস</div>
-                <div class="spin-prize-chip">Lucky Draw +1</div>
-                <div class="spin-prize-chip">৳3 বোনাস</div>
-                <div class="spin-prize-chip">৳1 বোনাস</div>
-                <div class="spin-prize-chip">৳5 বোনাস</div>
-                <div class="spin-prize-chip">Better Luck</div>
+                <div class="spin-wheel-center">SPIN</div>
             </div>
 
             <button type="button" id="execute-spin-btn" class="btn-primary" onclick="handleDailySpin()">
@@ -2164,14 +2152,9 @@
 
     const DEFAULT_SITE_NAME = "Qᴜɪᴄᴋ Dɪᴀᴍᴏɴᴅ";
     const DEVELOPER_TELEGRAM = "https://t.me/+RNskvby_DOUzNjA9";
-    
-    // নতুন "কিভাবে অর্ডার করবেন?" ইউটিউব ভিডিও লিংক আপডেট করা হয়েছে
     const DEFAULT_HOW_TO_ORDER_URL = "https://youtube.com/shorts/D8_ZIA8yjQo?feature=share";
 
-    // WhatsApp Live Chat নম্বর (Firestore-এ whatsapp সেট করা থাকলে সেটি অটো ব্যবহার হবে)
     let liveWhatsappNumber = "8801700000000";
-
-    // Entry Popup Control
     let entryPopupShownThisSession = false;
 
     function openEntryPopup() {
@@ -2191,13 +2174,62 @@
     // 1 TOP-UP = 1 SPIN & AUTOMATIC LUCKY DRAW SYSTEM
     // ==========================================
     const SPIN_WHEEL_SEGMENTS = [
-        { label: "৳2 বোনাস", type: "balance", amount: 2, angle: 30 },
-        { label: "Lucky Draw +1", type: "luckydraw_ticket", amount: 1, angle: 90 },
-        { label: "৳3 বোনাস", type: "balance", amount: 3, angle: 150 },
-        { label: "৳1 বোনাস", type: "balance", amount: 1, angle: 210 },
-        { label: "৳5 বোনাস", type: "balance", amount: 5, angle: 270 },
-        { label: "Better Luck Next Time", type: "none", amount: 0, angle: 330 }
+        { label: "৳2 বোনাস", color: "#ec4899", type: "balance", amount: 2, angle: 30 },
+        { label: "Lucky Draw", color: "#8b5cf6", type: "luckydraw_ticket", amount: 1, angle: 90 },
+        { label: "৳3 বোনাস", color: "#3b82f6", type: "balance", amount: 3, angle: 150 },
+        { label: "৳1 বোনাস", color: "#d97706", type: "balance", amount: 1, angle: 210 },
+        { label: "৳5 বোনাস", color: "#16a34a", type: "balance", amount: 5, angle: 270 },
+        { label: "Better Luck", color: "#7c3aed", type: "none", amount: 0, angle: 330 }
     ];
+
+    function polarToCartesian(cx, cy, r, angleInDegrees) {
+        const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+        return {
+            x: cx + (r * Math.cos(angleInRadians)),
+            y: cy + (r * Math.sin(angleInRadians))
+        };
+    }
+
+    function describeWheelSlice(cx, cy, r, startAngle, endAngle) {
+        const start = polarToCartesian(cx, cy, r, endAngle);
+        const end = polarToCartesian(cx, cy, r, startAngle);
+        const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+        return [
+            "M", cx, cy,
+            "L", start.x.toFixed(2), start.y.toFixed(2),
+            "A", r, r, 0, largeArcFlag, 0, end.x.toFixed(2), end.y.toFixed(2),
+            "Z"
+        ].join(" ");
+    }
+
+    function renderSpinWheelLabels() {
+        const svgEl = document.getElementById('spin-wheel-svg');
+        if (!svgEl) return;
+
+        const cx = 130;
+        const cy = 130;
+        const r = 130;
+        const sliceAngle = 360 / SPIN_WHEEL_SEGMENTS.length;
+
+        let markup = '';
+        SPIN_WHEEL_SEGMENTS.forEach((seg, idx) => {
+            const startAngle = idx * sliceAngle;
+            const endAngle = startAngle + sliceAngle;
+            const midAngle = startAngle + (sliceAngle / 2);
+            const pathD = describeWheelSlice(cx, cy, r, startAngle, endAngle);
+            const labelPos = polarToCartesian(cx, cy, 82, midAngle);
+
+            let rotateDeg = midAngle - 90;
+            if (midAngle > 180) {
+                rotateDeg = midAngle + 90;
+            }
+
+            markup += `<path d="${pathD}" fill="${seg.color}" stroke="#ffffff" stroke-width="1.5"></path>`;
+            markup += `<text x="${labelPos.x.toFixed(2)}" y="${labelPos.y.toFixed(2)}" class="spin-slice-text" transform="rotate(${rotateDeg.toFixed(1)}, ${labelPos.x.toFixed(2)}, ${labelPos.y.toFixed(2)})">${escapeLeaderboardText(seg.label)}</text>`;
+        });
+
+        svgEl.innerHTML = markup;
+    }
 
     let isSpinningWheel = false;
     let currentSpinRotation = 0;
@@ -2260,6 +2292,7 @@
     function openDailySpinPopup() {
         const popup = document.getElementById('daily-spin-popup');
         if (!popup) return;
+        renderSpinWheelLabels();
         popup.classList.add('show');
         refreshSpinPopupUI();
     }
@@ -3176,7 +3209,6 @@
         return keywords.some(kw => lowerName.includes(kw) || catName.includes(kw));
     }
 
-    // ইউটিউব ভিডিও লিংক থেকে Embed ID বের করার ফাংশন
     function getYoutubeEmbedUrl(url) {
         if (!url) return null;
         const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
@@ -3184,7 +3216,6 @@
         return match && match[1] ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : null;
     }
 
-    // "কিভাবে অর্ডার করবেন?" বাটনে ক্লিক করলে ভিডিও ওপেন হবে
     function openHowToOrderTutorial() {
         const game = gamesData[selectedGameId] || {};
         const videoUrl = (game.tutorialUrl && game.tutorialUrl.trim()) ? game.tutorialUrl.trim() : DEFAULT_HOW_TO_ORDER_URL;
@@ -3691,6 +3722,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        renderSpinWheelLabels();
         loadGlobalSettings();
         loadBanners();
         loadGamesAndCategories();
